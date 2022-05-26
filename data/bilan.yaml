@@ -19,7 +19,8 @@ bilan:
       # - logement
       # - transport . empreinte
       - alimentation
-      - equipements
+      - pratique
+      # - equipements
       # - numérique
       # - divers
       # - services publics

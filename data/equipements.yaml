@@ -1,11 +1,7 @@
 equipements:
-  abbréviation: logmt.
+  abbréviation: equip.
   description: |
-    On peut voir notre logement comme un bâti passif qui n'impacterait pas le climat... on aurait tort ! 
-
-    Le poste d'émission le plus important du logement en France consiste à chauffer l'air dans lequel on vit. L'empreinte ne sera pas du tout la même en fonction de la technologie de chauffage.
-
-    Mais ce n'est pas tout : construction, entretien, chauffage de l'eau chaude, électricité, tant de postes qui dépendent avant tout d'un seul paramètre : le nombre de m².
+    
   couleur: '#04a4ac'
   icônes: 🏘
   formule:
@@ -224,3 +220,4 @@ equipements . matériel . ballons . empreinte:
   unité: kgCO2e
 
 ##
+

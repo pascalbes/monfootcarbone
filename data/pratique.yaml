@@ -1,0 +1,277 @@
+pratique:
+  abbréviation: prat.
+  description: |
+    
+  couleur: '#04a4ac'
+  icônes: 🏘
+  formule:
+    somme: 
+      - loisir
+      - futsal
+  unité: kgCO2e
+
+
+## Loisir
+
+pratique . loisir:
+  formule:
+    somme:
+      - déplacement
+      - exterieur
+      - exterieur herbe
+      - intérieur
+  unité: kgCO2e
+
+##
+
+pratique . loisir . nb déplacement:
+  formule: 
+    somme:
+      - pratique . loisir . exterieur . nombre
+      - pratique . loisir . exterieur herbe . nombre
+      - pratique . loisir . intérieur . nombre
+
+pratique . loisir . exterieur:
+  titre: Extérieur (city, terrain synthétique, terrain en bitume) ?
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . loisir . exterieur . nombre:
+  question: Extérieur (city, terrain synthétique, terrain en bitume) ?
+  par défaut: 4
+
+pratique . loisir . exterieur . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+##
+
+pratique . loisir . exterieur herbe:
+  titre: Extérieur (terrain en herbe) ?
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . loisir . exterieur herbe . nombre:
+  question: Extérieur (terrain en herbe) ?
+  par défaut: 4
+
+pratique . loisir . exterieur herbe . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+##
+
+pratique . loisir . intérieur:
+  titre: Intérieur (gymnase) ?
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . loisir . intérieur . nombre:
+  question: Intérieur (gymnase) ?
+  par défaut: 4
+
+pratique . loisir . intérieur . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+## 
+
+pratique . loisir . distance:
+  question: En moyenne, quelle distance (aller-retour) parcourez-vous à chaque fois ?
+  applicable si: pratique . loisir . nb déplacement > 0
+  par défaut: 20
+  unité: km
+
+## 
+
+pratique . loisir . déplacement:
+  formule: nb déplacement * distance * facteur déplacement
+  applicable si: pratique . loisir . nb déplacement > 0
+  unité: kgCO2
+
+pratique . loisir . mode déplacement:
+  question: Quel est votre mode de déplacement principal pour aller pratiquer le football ?
+  par défaut: "'Marche'"
+  applicable si: pratique . loisir . nb déplacement > 0
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - marche
+        - vélo
+        - trottinette
+        - voiture individuelle électrique
+        - voiture individuelle thermique
+        # - covoiturage
+        # - transports en commun
+        # - deux-roues motorisé
+
+pratique . loisir . mode déplacement . marche:
+  titre: Marche
+pratique . loisir . mode déplacement . vélo:
+  titre: Vélo ou VAE
+pratique . loisir . mode déplacement . trottinette:
+  titre: Trottinette ou Trottinette électrique
+pratique . loisir . mode déplacement . voiture individuelle électrique:
+pratique . loisir . mode déplacement . voiture individuelle thermique:
+pratique . loisir . mode déplacement . covoiturage:
+pratique . loisir . mode déplacement . transports en commun:
+pratique . loisir . mode déplacement . deux-roues motorisé:
+
+pratique . loisir . facteur déplacement:
+  applicable si: pratique . loisir . nb déplacement > 0
+  unité: kgCO2/km
+  formule:
+    variations:
+      - si: mode déplacement = 'marche'
+        alors: 1
+      - si: mode déplacement = 'vélo'
+        alors: 0.6
+      - si: mode déplacement = 'trottinette'
+        alors: 0.6
+      - si: mode déplacement = 'voiture individuelle électrique'
+        alors: 0.6
+      - si: mode déplacement = 'voiture individuelle thermique'
+        alors: 0.6
+      - si: mode déplacement = 'covoiturage'
+        alors: 0.6
+      - si: mode déplacement = 'transports en commun'
+        alors: 0.6
+      - si: mode déplacement = 'deux-roues motorisé'
+        alors: 0.6
+      - sinon: 0.3
+
+
+#########
+## Futsal
+#########
+
+pratique . futsal:
+  non applicable si: niveau pratique = 'aucune'
+  formule: 
+    variations:
+      - si: niveau pratique = 'aucune'
+        alors: 0
+      - sinon: nb déplacements annuel domicile * distance moyenne * facteur déplacement
+  unité: kgCO2
+
+pratique . futsal . niveau pratique:
+  question: Quel est votre niveau de pratique du futsal ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - aucune
+        - d1 futsal
+        - d2 futsal
+        - régional
+        - district
+        # - club hors compétition
+
+
+pratique . futsal . niveau pratique . aucune:
+  titre: Je ne pratique pas
+pratique . futsal . niveau pratique . d1 futsal:
+pratique . futsal . niveau pratique . d2 futsal:
+pratique . futsal . niveau pratique . régional:
+pratique . futsal . niveau pratique . district:
+pratique . futsal . niveau pratique . club hors compétition:
+
+##
+
+pratique . futsal . nb déplacements annuel domicile:
+  formule: nb entrainements * 52 + nb matches * 12
+  unité: nb
+
+pratique . futsal . nb entrainements:
+  question: Quel est votre rythme d’entraînement hebdomadaire ?
+  non applicable si: niveau pratique = 'aucune'
+  par défaut: 2
+  unité: nb
+
+##
+
+pratique . futsal . fréquence:
+  question: Quelle est votre fréquence de matchs ?
+  non applicable si: niveau pratique = 'aucune'
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - hebodmadaire
+        - bimensuel
+        - mensuel
+
+pratique . futsal . fréquence . hebodmadaire:
+pratique . futsal . fréquence . bimensuel:
+pratique . futsal . fréquence . mensuel:
+
+pratique . futsal . nb matches:
+  formule:
+    variations:
+      - si: fréquence = 'hebodmadaire'
+        alors: 4
+      - si: fréquence = 'bimensuel'
+        alors: 2
+      - si: fréquence = 'mensuel'
+        alors: 1
+
+##
+
+pratique . futsal . distance moyenne:
+  question: En moyenne, quelle distance (aller-retour) parcourez-vous pour vous rendre à l’entraînement et à vos matchs à domicile ?
+  non applicable si: niveau pratique = 'aucune'
+  par défaut: 20
+  unité: km
+
+##
+
+pratique . futsal . mode déplacement domicile:
+  question: Quel est votre mode de déplacement principal pour vous rendre à l’entraînement et à vos matchs à domicile ?
+  non applicable si: niveau pratique = 'aucune'
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - marche
+        - vélo
+        - trottinette
+        - voiture individuelle électrique
+        - voiture individuelle thermique
+        # - covoiturage
+        # - transports en commun
+        # - deux-roues motorisé
+
+pratique . futsal . mode déplacement domicile . marche:
+  titre: Marche
+pratique . futsal . mode déplacement domicile . vélo:
+  titre: Vélo ou VAE
+pratique . futsal . mode déplacement domicile . trottinette:
+  titre: Trottinette ou Trottinette électrique
+pratique . futsal . mode déplacement domicile . voiture individuelle électrique:
+pratique . futsal . mode déplacement domicile . voiture individuelle thermique:
+pratique . futsal . mode déplacement domicile . covoiturage:
+pratique . futsal . mode déplacement domicile . transports en commun:
+pratique . futsal . mode déplacement domicile . deux-roues motorisé:
+
+pratique . futsal . facteur déplacement:
+  unité: kgCO2/km
+  formule:
+    variations:
+      - si: mode déplacement domicile = 'marche'
+        alors: 1
+      - si: mode déplacement domicile = 'vélo'
+        alors: 0.6
+      - si: mode déplacement domicile = 'trottinette'
+        alors: 0.6
+      - si: mode déplacement domicile = 'voiture individuelle électrique'
+        alors: 0.6
+      - si: mode déplacement domicile = 'voiture individuelle thermique'
+        alors: 0.6
+      - si: mode déplacement domicile = 'covoiturage'
+        alors: 0.6
+      - si: mode déplacement domicile = 'transports en commun'
+        alors: 0.6
+      - si: mode déplacement domicile = 'deux-roues motorisé'
+        alors: 0.6
+      - sinon: 0.3
