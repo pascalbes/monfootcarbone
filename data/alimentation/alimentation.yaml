@@ -13,12 +13,12 @@ alimentation:
   formule:
     somme:
       - petit déjeuner annuel
-      - déjeuner et dîner
-      - de saison . empreinte
-      - local . empreinte
-      - boisson
-      - déchets
-      - gaspillage alimentaire
+      # - déjeuner et dîner
+      # - de saison . empreinte
+      # - local . empreinte
+      # - boisson
+      # - déchets
+      # - gaspillage alimentaire
         # à venir peut-être dans une prochaine version
         # - laitages
 
