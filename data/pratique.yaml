@@ -6,8 +6,9 @@ pratique:
   icônes: 🏘
   formule:
     somme: 
-      - loisir
-      - futsal
+      # - loisir
+      # - futsal
+      - alimentation
   unité: kgCO2e
 
 
@@ -275,3 +276,175 @@ pratique . futsal . facteur déplacement:
       - si: mode déplacement domicile = 'deux-roues motorisé'
         alors: 0.6
       - sinon: 0.3
+
+
+
+################
+## Alimentation
+################
+
+pratique . alimentation:
+  formule:
+    somme:
+      - surplus
+      - séance club
+      # - séance loisir
+
+pratique . alimentation . surplus:
+  unité: kgCO2e
+  formule:
+    variations: 
+      - si: type repas = 'végétalien'
+        alors: calories * empreinte végétalien * 365
+      - si: type repas = 'végétarien'
+        alors: calories * empreinte végétarien * 365
+      - si: type repas = 'flexitarien'
+        alors: calories * empreinte flexitarien * 365
+      - si: type repas = 'classique'
+        alors: calories * empreinte classique * 365
+      - si: type repas = 'carnivore'
+        alors: calories * empreinte carnivore * 365
+      - sinon: calories * empreinte classique * 365
+
+pratique . alimentation . surplus . type repas:
+  question: Quel est votre type de régime alimentaire ? 
+  formule:
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités: 
+        - végétalien
+        - végétarien
+        - flexitarien
+        - classique
+        - carnivore
+  par défaut: classique
+
+pratique . alimentation . surplus . type repas . végétalien:
+pratique . alimentation . surplus . type repas . végétarien:
+pratique . alimentation . surplus . type repas . flexitarien:
+pratique . alimentation . surplus . type repas . classique: oui
+pratique . alimentation . surplus . type repas . carnivore:
+
+pratique . alimentation . surplus . calories:
+  question: Par rapport à un être humain de votre taille et de votre genre, combien de Kcal consommez vous en plus au quotidien ?
+  suggestions: 
+    normal: 0
+    légèrement plus: 200
+    beaucoup plus: 800
+    régime de champion: 1500
+  unité: kcal
+  par défaut: 200
+
+pratique . alimentation . surplus . empreinte végétalien:
+  unité: kgCO2/kcal
+  formule: 0.98 / 2500
+
+pratique . alimentation . surplus . empreinte végétarien:
+  unité: kgCO2/kcal
+  formule: 1.76 / 2500
+
+pratique . alimentation . surplus . empreinte flexitarien:
+  unité: kgCO2/kcal
+  formule: 2.86 / 2500
+
+pratique . alimentation . surplus . empreinte classique:
+  unité: kgCO2/kcal
+  formule: 4.53 / 2500
+
+pratique . alimentation . surplus . empreinte carnivore:
+  unité: kgCO2/kcal
+  formule: 8.84 / 2500
+
+## ALIMENTATION / CLUB
+
+pratique . alimentation . séance club:
+  formule:
+    somme:
+      - barres
+      - boissons
+      - fruits
+      - sodas
+      - alcool
+
+##
+
+pratique . alimentation . séance club . barres:
+  titre: Barres
+  icônes: 🍫
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance club . barres . nombre:
+  question: Barres
+  par défaut: 2
+
+pratique . alimentation . séance club . barres . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+  ##
+
+pratique . alimentation . séance club . boissons:
+  icônes: 🧃
+  titre: Boisson énergétique (L)
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance club . boissons . nombre:
+  question: Boisson énergétique
+  par défaut: 0.5
+  unité: L
+
+pratique . alimentation . séance club . boissons . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+  ##
+
+pratique . alimentation . séance club . fruits:
+  icônes: 🍎🍐🍊
+  titre: Fruits
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance club . fruits . nombre:
+  question: Fruits
+  par défaut: 2
+
+pratique . alimentation . séance club . fruits . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+  ##
+
+pratique . alimentation . séance club . sodas:
+  icônes: 🥤
+  titre: Sodas (L)
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance club . sodas . nombre:
+  question: Sodas
+  par défaut: 0
+  unité: L
+
+pratique . alimentation . séance club . sodas . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+  ##
+
+pratique . alimentation . séance club . alcool:
+  icônes: 🍺🍷
+  titre: 'Alcool : bière, vin, etc. (L)'
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance club . alcool . nombre:
+  question: 'Alcool : bière, vin, etc. (L)'
+  par défaut: 0.25
+  unité: L
+
+pratique . alimentation . séance club . alcool . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L

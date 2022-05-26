@@ -13,13 +13,13 @@ transport . empreinte:
 
   formule:
     somme:
-      - voiture . empreinte
-      - avion
-      - deux roues thermique
-      - bus
-      - train
-      - métro ou tram
-      - vélo
+      # - voiture . empreinte
+      # - avion
+      # - deux roues thermique
+      # - bus
+      # - train
+      # - métro ou tram
+      # - vélo
       - vacances
 
 transport . vacances:

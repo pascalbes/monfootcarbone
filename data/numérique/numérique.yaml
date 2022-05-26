@@ -9,19 +9,19 @@ numérique:
   formule:
     somme:
       - téléphone
-      - TV
-      - ordinateur portable
-      - ordinateur fixe
-      - internet
-      - tablette
-      - vidéoprojecteur
-      - appareil photo
-      - home cinéma
-      - enceinte bluetooth
-      - enceinte vocale
-      - montre connectée
-      - console de salon
-      - console portable
+      # - TV
+      # - ordinateur portable
+      # - ordinateur fixe
+      # - internet
+      # - tablette
+      # - vidéoprojecteur
+      # - appareil photo
+      # - home cinéma
+      # - enceinte bluetooth
+      # - enceinte vocale
+      # - montre connectée
+      # - console de salon
+      # - console portable
 
 numérique . internet:
   icônes: 🌐

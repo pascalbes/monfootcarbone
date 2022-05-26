@@ -14,8 +14,8 @@ divers:
   formule:
     somme:
       - textile
-      - électroménager
-      - autres produits
+      # - électroménager
+      # - autres produits
 
 divers . autres produits:
   icônes: 📦
