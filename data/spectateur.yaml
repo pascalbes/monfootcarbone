@@ -1,0 +1,211 @@
+spectateur: 
+  couleur: '#695F00'
+  icônes: 📺
+  description: | 
+    La catégorie "spectateur" intègre des déplacements pour assister à des événements sportifs
+  formule: 
+    somme:
+    #  - suivi
+    #  - numérique
+     - déplacements
+  applicable si: présent
+  unité: kgCO2e
+
+spectateur . présent:
+  question: Êtes-vous spectateur d'événements sportifs (nécessitant des déplacements) ?
+  par défaut: oui
+
+##############
+## Déplacement
+##############
+
+spectateur . déplacements:
+  formule:
+    somme: 
+      - locale
+      - nationale
+      # - matchs internationaux
+      # - compétitions internationales
+  unité: kgCO2e
+
+
+spectateur . déplacements . locale . présent: 
+  question: Locale ou régionale ?
+  par défaut: non
+
+spectateur . déplacements . nationale . présent: 
+  question: Nationale ?
+  par défaut: non
+
+
+
+## locale
+
+spectateur . déplacements . locale:
+  titre: Locale ou régionale
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . locale . nombre:
+  applicable si: déplacements . locale . présent
+  question: A combien d'événements sportifs pour lesquels vous effectuez un déplacement d’envergure locale ou régionale assistez-vous sur une année ?
+  par défaut: 4
+  suggestions:
+    1 fois / trimestre: 4
+    1 fois / mois: 12
+    toutes les semaines: 52
+  unité: déplacements
+
+spectateur . déplacements . locale . moyen transport:
+  applicable si: déplacements . locale . nombre > 0
+  question: Quel moyen de transport utilisez-vous en général pour vos déplacements d'envergure locale ou régionale pour assister à des événements sportifs ?
+  une possibilité: 
+    choix obligatoire: oui
+    possibilités: 
+      - Voiture
+      - Moto
+      - Bus
+      - Train
+      - Vélo ou à pied
+    par défaut: Voiture
+
+spectateur . déplacements . locale . empreinte:
+  unité: kgCO2e/déplacements
+  formule: 
+    variations: 
+      - si: moyen transport = 'Voiture'
+        alors: 20.14
+      - si: moyen transport = 'Moto'
+        alors: 16.82
+      - si: moyen transport = 'Bus'
+        alors: 3.51
+      - si: moyen transport = 'Train'
+        alors: 2.48
+      - si: moyen transport = 'Vélo ou à pied'
+        alors: 1.1
+
+spectateur . déplacements . locale . moyen transport . Voiture:
+  titre: Voiture 🚗
+spectateur . déplacements . locale . moyen transport . Moto:
+  titre: Moto 🏍
+spectateur . déplacements . locale . moyen transport . Bus:
+  titre: Bus 🚌
+spectateur . déplacements . locale . moyen transport . Train:
+  titre: Train ou métro 🚊
+spectateur . déplacements . locale . moyen transport . Vélo ou à pied:
+  titre: Vélo ou à pied 🚴 🛴 👟 
+
+
+## Nationale
+
+spectateur . déplacements . nationale:
+  titre: Nationale
+  formule:
+    somme:
+      - transport
+      - déplacements
+      - hébergement
+  applicable si: présent
+  unité: kgCO2e
+
+
+## Nationale / déplacements
+
+spectateur . déplacements . nationale . déplacements:
+  formule: nombre * empreinte * 12
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . déplacements . nombre:
+  question: En moyenne, combien de fois par mois vous déplacez-vous pour assister à un match à l’échelle nationale ?
+  par défaut: 1
+  suggestions:
+    1 fois / mois: 1
+    toutes les semaines : 4
+    toutes les 2 semaines : 2
+  unité: déplacements
+
+spectateur . déplacements . nationale . déplacements . empreinte:
+  formule: 106.15
+  unité: kgCO2e/déplacements
+
+## Nationale / hébergement
+
+spectateur . déplacements . nationale . hébergement:
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . hébergement . nombre:
+  question: Sur une année, combien de nuits d’hôtel, auberge de jeunesse, airbnb ou autre faites-vous par an pour aller assister à des matchs à l’échelle nationale ?
+  par défaut: 2
+  unité: nuits
+
+spectateur . déplacements . nationale . hébergement . empreinte:
+  formule: 106.15
+  unité: kgCO2e/nuits
+
+## Nationale / hébergement
+
+spectateur . déplacements . nationale . transport:
+  formule:
+    somme:
+      - Avion 
+      - Voiture
+      - Bus
+      - Train
+
+spectateur . déplacements . nationale . transport . Avion:
+  icônes: ✈️
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . transport . Avion . nombre:
+  question: En avion
+  par défaut: 5
+  unité: h
+
+spectateur . déplacements . nationale . transport . Avion . empreinte:
+  formule: 106.15
+  unité: kgCO2e/h
+
+spectateur . déplacements . nationale . transport . Voiture:
+  icônes: 🚗
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . transport . Voiture . nombre:
+  question: En voiture
+  par défaut: 5
+  unité: h
+
+spectateur . déplacements . nationale . transport . Voiture . empreinte:
+  formule: 20.14
+  unité: kgCO2e/h
+
+spectateur . déplacements . nationale . transport . Bus:
+  icônes: 🚌
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . transport . Bus . nombre:
+  question: En bus
+  par défaut: 0
+  unité: h
+
+spectateur . déplacements . nationale . transport . Bus . empreinte:
+  formule: 2.81
+  unité: kgCO2e/h
+
+spectateur . déplacements . nationale . transport . Train:
+  titre: Train ou métro
+  icônes: 🚊
+  formule: nombre * empreinte
+  unité: kgCO2e
+
+spectateur . déplacements . nationale . transport . Train . nombre:
+  question: En train
+  par défaut: 0
+  unité: h
+
+spectateur . déplacements . nationale . transport . Train . empreinte:
+  formule: 1.06
+  unité: kgCO2e/h
