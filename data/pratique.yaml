@@ -284,9 +284,6 @@ pratique . futsal . FE Gymnase:
       - si: niveau pratique = 'club hors compétition'
         alors: 10
 
-pratique . futsal . nombre déplacements annuel domicile:
-  formule: nb entrainements * 52 + nb matches * 12
-
 ## Futsal / matches
 
 pratique . futsal . matches:
@@ -535,11 +532,66 @@ pratique . futsal . déplacement exterieur . deux-roues motorisé . nombre dépl
 pratique . club:
   titre: Club FFF ou autre
   applicable si: présent
-  formule: 500
-  unité: kgCO2e
+  formule:
+    somme:
+      - entrainement
+  unité: kgCO2
 
 pratique . club . présent:
   par défaut: non
+
+pratique . club . niveau pratique:
+  question: Quel est votre niveau de pratique en club ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - L1
+        - Ligue 2 BKT
+        - National 1
+        - National 2
+        - National 3
+        # - Régional
+        # - District
+
+pratique . club . niveau pratique . L1:
+  titre: Ligue 1 Uber Eats (H)
+pratique . club . niveau pratique . Ligue 2 BKT:
+pratique . club . niveau pratique . National 1:
+pratique . club . niveau pratique . National 2:
+pratique . club . niveau pratique . National 3:
+pratique . club . niveau pratique . Régional:
+pratique . club . niveau pratique . District:
+
+## CLUB / entrainement
+
+pratique . club . entrainement:
+  formule: FE Stade * constantes . nb semaines pratique * nb entrainements
+  unité: kgCO2
+
+pratique . club . nb entrainements:
+  question: Quel est votre rythme d’entraînement hebdomadaire en club ?
+  par défaut: 2
+  unité: entraînement / semaine
+
+pratique . club . FE Stade:
+  unité: kgCO2e
+  formule:
+    variations: 
+      - si: niveau pratique = 'L1'
+        alors: 100
+      - si: niveau pratique = 'Ligue 2 BKT'
+        alors: 70
+      - si: niveau pratique = 'National 1'
+        alors: 40
+      - si: niveau pratique = 'National 2'
+        alors: 20
+      - si: niveau pratique = 'National 3'
+        alors: 10
+      - si: niveau pratique = 'Régional'
+        alors: 10
+      - si: niveau pratique = 'District'
+        alors: 10
 
 #########
 ## International
