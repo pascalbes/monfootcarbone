@@ -6,15 +6,58 @@ pratique:
   icônes: 🏘
   formule:
     somme: 
-      # - loisir
-      # - futsal
+      - loisir
+      - futsal
+      - club
+      - international
       - alimentation
+      - spectateur
   unité: kgCO2e
 
 
+#########
+## Cadrage (hors pratique)
+#########
+
+pratique . spectateur:
+  titre: Spectateur·rice (stade)
+  formule: 0
+  unité: kgCO2e
+
+pratique . spectateur . présent:
+  par défaut: non
+
+pratique . téléspectateur:
+  titre: Téléspectateur·rice
+
+pratique . téléspectateur . présent:
+  par défaut: non
+
+pratique . paris:
+  titre: Paris sportifs
+  formule: 1000
+  unité: kgCO2e
+
+pratique . paris . présent:
+  par défaut: non
+
+pratique . jeux vidéos:
+  titre: Jeux vidéos
+  formule: 2000
+  unité: kgCO2e
+
+pratique . jeux vidéos . présent:
+  par défaut: non
+
+
+
+#########
 ## Loisir
+#########
 
 pratique . loisir:
+  applicable si: présent
+  titre: Loisir (hors club)
   formule:
     somme:
       - déplacement
@@ -23,22 +66,25 @@ pratique . loisir:
       - intérieur
   unité: kgCO2e
 
-##
+pratique . loisir . présent:
+  par défaut: non
 
-pratique . loisir . nb déplacement:
+## C.1.1
+
+pratique . loisir . nombre déplacements pratique:
   formule: 
     somme:
-      - pratique . loisir . exterieur . nombre
-      - pratique . loisir . exterieur herbe . nombre
-      - pratique . loisir . intérieur . nombre
+      - pratique . loisir . exterieur . nombre pratiques
+      - pratique . loisir . exterieur herbe . nombre pratiques
+      - pratique . loisir . intérieur . nombre pratiques
 
 pratique . loisir . exterieur:
-  titre: Extérieur (city, terrain synthétique, terrain en bitume) ?
-  formule: empreinte * nombre
+  titre: Extérieur (city, terrain synthétique, terrain en bitume)
+  formule: empreinte * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
-pratique . loisir . exterieur . nombre:
-  question: Extérieur (city, terrain synthétique, terrain en bitume) ?
+pratique . loisir . exterieur . nombre pratiques:
+  question: Extérieur (city, terrain synthétique, terrain en bitume)
   par défaut: 4
 
 pratique . loisir . exterieur . empreinte:
@@ -48,12 +94,12 @@ pratique . loisir . exterieur . empreinte:
 ##
 
 pratique . loisir . exterieur herbe:
-  titre: Extérieur (terrain en herbe) ?
-  formule: empreinte * nombre
+  titre: Extérieur (terrain en herbe)
+  formule: empreinte * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
-pratique . loisir . exterieur herbe . nombre:
-  question: Extérieur (terrain en herbe) ?
+pratique . loisir . exterieur herbe . nombre pratiques:
+  question: Extérieur (terrain en herbe)
   par défaut: 4
 
 pratique . loisir . exterieur herbe . empreinte:
@@ -63,84 +109,117 @@ pratique . loisir . exterieur herbe . empreinte:
 ##
 
 pratique . loisir . intérieur:
-  titre: Intérieur (gymnase) ?
-  formule: empreinte * nombre
+  titre: Intérieur (gymnase)
+  formule: empreinte * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
-pratique . loisir . intérieur . nombre:
-  question: Intérieur (gymnase) ?
+pratique . loisir . intérieur . nombre pratiques:
+  question: Intérieur (gymnase)
   par défaut: 4
 
 pratique . loisir . intérieur . empreinte:
   formule: 5.35
   unité: kgCO2e
 
-## 
+## C.1.2
 
 pratique . loisir . distance:
-  question: En moyenne, quelle distance (aller-retour) parcourez-vous à chaque fois ?
-  applicable si: pratique . loisir . nb déplacement > 0
+  question: En moyenne, quelle distance (aller-retour) pour vous rendre sur le lieu de pratique parcourez-vous à chaque fois ?
   par défaut: 20
   unité: km
 
-## 
+## loisirs / déplacements
 
 pratique . loisir . déplacement:
-  formule: nb déplacement * distance * facteur déplacement
-  applicable si: pratique . loisir . nb déplacement > 0
+  formule: nombre transports * distance * facteur déplacement * constantes . nb mois pratique
   unité: kgCO2
 
-pratique . loisir . mode déplacement:
-  question: Quel est votre mode de déplacement principal pour aller pratiquer le football ?
-  par défaut: "'Marche'"
-  applicable si: pratique . loisir . nb déplacement > 0
+pratique . loisir . déplacement . nombre transports:
   formule: 
-    une possibilité: 
-      choix obligatoire: oui
-      possibilités:
-        - marche
-        - vélo
-        - trottinette
-        - voiture individuelle électrique
-        - voiture individuelle thermique
-        # - covoiturage
-        # - transports en commun
-        # - deux-roues motorisé
+    somme:
+      - doux . nombre déplacements
+      - voiture élec . nombre déplacements
+      - voiture thermique . nombre déplacements
+      - covoiturage . nombre déplacements
+      - transports en commun . nombre déplacements
+      - deux-roues motorisé . nombre déplacements
 
-pratique . loisir . mode déplacement . marche:
-  titre: Marche
-pratique . loisir . mode déplacement . vélo:
-  titre: Vélo ou VAE
-pratique . loisir . mode déplacement . trottinette:
-  titre: Trottinette ou Trottinette électrique
-pratique . loisir . mode déplacement . voiture individuelle électrique:
-pratique . loisir . mode déplacement . voiture individuelle thermique:
-pratique . loisir . mode déplacement . covoiturage:
-pratique . loisir . mode déplacement . transports en commun:
-pratique . loisir . mode déplacement . deux-roues motorisé:
+pratique . loisir . déplacement . facteur déplacement:
+  formule: 
+    variations: 
+      - si: nombre transports = 0
+        alors: 0
+      - sinon: empreinte totale / nombre transports
 
-pratique . loisir . facteur déplacement:
-  applicable si: pratique . loisir . nb déplacement > 0
-  unité: kgCO2/km
+pratique . loisir . déplacement . empreinte totale :
   formule:
-    variations:
-      - si: mode déplacement = 'marche'
-        alors: 1
-      - si: mode déplacement = 'vélo'
-        alors: 0.6
-      - si: mode déplacement = 'trottinette'
-        alors: 0.6
-      - si: mode déplacement = 'voiture individuelle électrique'
-        alors: 0.6
-      - si: mode déplacement = 'voiture individuelle thermique'
-        alors: 0.6
-      - si: mode déplacement = 'covoiturage'
-        alors: 0.6
-      - si: mode déplacement = 'transports en commun'
-        alors: 0.6
-      - si: mode déplacement = 'deux-roues motorisé'
-        alors: 0.6
-      - sinon: 0.3
+    somme:
+      - doux
+      - voiture élec
+      - voiture thermique
+      - covoiturage
+      - transports en commun
+      - deux-roues motorisé
+
+## Marche
+
+pratique . loisir . déplacement . doux:
+  titre: Vélo, trottinette ou à pied
+  formule: constantes . empreinte transport . doux * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . doux . nombre déplacements:
+  par défaut: 0
+
+## Voiture Elec
+
+pratique . loisir . déplacement . voiture élec:
+  titre: Voiture individuelle électrique
+  formule: constantes . empreinte transport . voiture élec * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . voiture élec . nombre déplacements:
+  par défaut: 0
+
+## Voiture thermique
+
+pratique . loisir . déplacement . voiture thermique:
+  titre: Voiture individuelle thermique
+  formule: constantes . empreinte transport . voiture thermique * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . voiture thermique . nombre déplacements:
+  par défaut: 0
+
+## Covoiturage
+
+pratique . loisir . déplacement . covoiturage:
+  formule: constantes . empreinte transport . covoiturage * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . covoiturage . nombre déplacements:
+  question: Covoiturage
+  par défaut: 0
+
+## Transports en commun
+
+pratique . loisir . déplacement . transports en commun:
+  formule: constantes . empreinte transport . transports en commun * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . transports en commun . nombre déplacements:
+  question: Transports en commun
+  par défaut: 0
+
+## Deux-roues motorisé
+
+pratique . loisir . déplacement . deux-roues motorisé:
+  formule: constantes . empreinte transport . deux-roues motorisé * nombre déplacements
+  unité: kgCO2e
+
+pratique . loisir . déplacement . deux-roues motorisé . nombre déplacements:
+  question: Deux-roues motorisé
+  par défaut: 0
 
 
 #########
@@ -148,13 +227,18 @@ pratique . loisir . facteur déplacement:
 #########
 
 pratique . futsal:
-  non applicable si: niveau pratique = 'aucune'
-  formule: 
-    variations:
-      - si: niveau pratique = 'aucune'
-        alors: 0
-      - sinon: nb déplacements annuel domicile * distance moyenne * facteur déplacement
+  titre: Futsal (hors five)
+  applicable si: présent
+  formule:
+    somme:
+      - entrainement
+      - matches
+      - déplacement domicile
+      - déplacement exterieur
   unité: kgCO2
+
+pratique . futsal . présent:
+  par défaut: non
 
 pratique . futsal . niveau pratique:
   question: Quel est votre niveau de pratique du futsal ?
@@ -162,39 +246,56 @@ pratique . futsal . niveau pratique:
     une possibilité: 
       choix obligatoire: oui
       possibilités:
-        - aucune
-        - d1 futsal
-        - d2 futsal
+        - D1 futsal
+        - D2 futsal
         - régional
         - district
-        # - club hors compétition
+        - club hors compétition
 
-
-pratique . futsal . niveau pratique . aucune:
-  titre: Je ne pratique pas
-pratique . futsal . niveau pratique . d1 futsal:
-pratique . futsal . niveau pratique . d2 futsal:
+pratique . futsal . niveau pratique . D1 futsal:
+pratique . futsal . niveau pratique . D2 futsal:
 pratique . futsal . niveau pratique . régional:
 pratique . futsal . niveau pratique . district:
 pratique . futsal . niveau pratique . club hors compétition:
 
-##
+## Futsal / entrainement
 
-pratique . futsal . nb déplacements annuel domicile:
-  formule: nb entrainements * 52 + nb matches * 12
-  unité: nb
+pratique . futsal . entrainement:
+  formule: FE Gymnase * constantes . nb semaines pratique * nb entrainements
+  unité: kgCO2
 
 pratique . futsal . nb entrainements:
   question: Quel est votre rythme d’entraînement hebdomadaire ?
-  non applicable si: niveau pratique = 'aucune'
   par défaut: 2
-  unité: nb
+  unité: entraînement / semaine
 
-##
+pratique . futsal . FE Gymnase:
+  unité: kgCO2e
+  formule:
+    variations: 
+      - si: niveau pratique = 'D1 futsal'
+        alors: 100
+      - si: niveau pratique = 'D2 futsal'
+        alors: 70
+      - si: niveau pratique = 'régional'
+        alors: 40
+      - si: niveau pratique = 'district'
+        alors: 20
+      - si: niveau pratique = 'club hors compétition'
+        alors: 10
+
+pratique . futsal . nombre déplacements annuel domicile:
+  formule: nb entrainements * 52 + nb matches * 12
+
+## Futsal / matches
+
+pratique . futsal . matches:
+  non applicable si: niveau pratique = 'club hors compétition'
+  formule: FE Gymnase * constantes . nb mois pratique * nb matches
+  unité: kgCO2
 
 pratique . futsal . fréquence:
   question: Quelle est votre fréquence de matchs ?
-  non applicable si: niveau pratique = 'aucune'
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -217,67 +318,241 @@ pratique . futsal . nb matches:
       - si: fréquence = 'mensuel'
         alors: 1
 
-##
+## Futsal / Déplacement domicile
 
-pratique . futsal . distance moyenne:
+pratique . futsal . déplacement domicile:
+  formule: nombre transports * distance * facteur déplacement * constantes . nb mois pratique
+  unité: kgCO2
+
+pratique . futsal . déplacement domicile . distance:
   question: En moyenne, quelle distance (aller-retour) parcourez-vous pour vous rendre à l’entraînement et à vos matchs à domicile ?
-  non applicable si: niveau pratique = 'aucune'
   par défaut: 20
   unité: km
 
-##
-
-pratique . futsal . mode déplacement domicile:
-  question: Quel est votre mode de déplacement principal pour vous rendre à l’entraînement et à vos matchs à domicile ?
-  non applicable si: niveau pratique = 'aucune'
+pratique . futsal . déplacement domicile . nombre transports:
   formule: 
-    une possibilité: 
-      choix obligatoire: oui
-      possibilités:
-        - marche
-        - vélo
-        - trottinette
-        - voiture individuelle électrique
-        - voiture individuelle thermique
-        # - covoiturage
-        # - transports en commun
-        # - deux-roues motorisé
+    somme:
+      - doux . nombre déplacements
+      - voiture élec . nombre déplacements
+      - voiture thermique . nombre déplacements
+      - covoiturage . nombre déplacements
+      - transports en commun . nombre déplacements
+      - deux-roues motorisé . nombre déplacements
 
-pratique . futsal . mode déplacement domicile . marche:
-  titre: Marche
-pratique . futsal . mode déplacement domicile . vélo:
-  titre: Vélo ou VAE
-pratique . futsal . mode déplacement domicile . trottinette:
-  titre: Trottinette ou Trottinette électrique
-pratique . futsal . mode déplacement domicile . voiture individuelle électrique:
-pratique . futsal . mode déplacement domicile . voiture individuelle thermique:
-pratique . futsal . mode déplacement domicile . covoiturage:
-pratique . futsal . mode déplacement domicile . transports en commun:
-pratique . futsal . mode déplacement domicile . deux-roues motorisé:
+pratique . futsal . déplacement domicile . facteur déplacement:
+  formule: 
+    variations: 
+      - si: nombre transports = 0
+        alors: 0
+      - sinon: empreinte totale / nombre transports
 
-pratique . futsal . facteur déplacement:
-  unité: kgCO2/km
+
+pratique . futsal . déplacement domicile . empreinte totale :
   formule:
-    variations:
-      - si: mode déplacement domicile = 'marche'
-        alors: 1
-      - si: mode déplacement domicile = 'vélo'
-        alors: 0.6
-      - si: mode déplacement domicile = 'trottinette'
-        alors: 0.6
-      - si: mode déplacement domicile = 'voiture individuelle électrique'
-        alors: 0.6
-      - si: mode déplacement domicile = 'voiture individuelle thermique'
-        alors: 0.6
-      - si: mode déplacement domicile = 'covoiturage'
-        alors: 0.6
-      - si: mode déplacement domicile = 'transports en commun'
-        alors: 0.6
-      - si: mode déplacement domicile = 'deux-roues motorisé'
-        alors: 0.6
-      - sinon: 0.3
+    somme:
+      - doux
+      - voiture élec
+      - voiture thermique
+      - covoiturage
+      - transports en commun
+      - deux-roues motorisé
+
+## Marche
+
+pratique . futsal . déplacement domicile . doux:
+  titre: Vélo, trottinette ou à pied
+  formule: constantes . empreinte transport . doux * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . doux . nombre déplacements:
+  par défaut: 0
+
+## Voiture Elec
+
+pratique . futsal . déplacement domicile . voiture élec:
+  titre: Voiture individuelle électrique
+  formule: constantes . empreinte transport . voiture élec * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . voiture élec . nombre déplacements:
+  par défaut: 0
+
+## Voiture thermique
+
+pratique . futsal . déplacement domicile . voiture thermique:
+  titre: Voiture individuelle thermique
+  formule: constantes . empreinte transport . voiture thermique * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . voiture thermique . nombre déplacements:
+  par défaut: 0
+
+## Covoiturage
+
+pratique . futsal . déplacement domicile . covoiturage:
+  formule: constantes . empreinte transport . covoiturage * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . covoiturage . nombre déplacements:
+  question: Covoiturage
+  par défaut: 0
+
+## Transports en commun
+
+pratique . futsal . déplacement domicile . transports en commun:
+  formule: constantes . empreinte transport . transports en commun * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . transports en commun . nombre déplacements:
+  question: Transports en commun
+  par défaut: 0
+
+## Deux-roues motorisé
+
+pratique . futsal . déplacement domicile . deux-roues motorisé:
+  formule: constantes . empreinte transport . deux-roues motorisé * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement domicile . deux-roues motorisé . nombre déplacements:
+  question: Deux-roues motorisé
+  par défaut: 0
 
 
+## Futsal / Déplacement exterieur
+
+pratique . futsal . déplacement exterieur:
+  non applicable si: niveau pratique = 'club hors compétition'
+  formule: nombre transports * distance * facteur déplacement * constantes . nb mois pratique
+  unité: kgCO2
+
+pratique . futsal . déplacement exterieur . distance:
+  unité: km
+  formule:
+    variations: 
+      - si: niveau pratique = 'D1 futsal'
+        alors: 100
+      - si: niveau pratique = 'D2 futsal'
+        alors: 70
+      - si: niveau pratique = 'régional'
+        alors: 40
+      - si: niveau pratique = 'district'
+        alors: 20
+      - si: niveau pratique = 'club hors compétition'
+        alors: 10
+
+pratique . futsal . déplacement exterieur . nombre transports:
+  formule: 
+    somme:
+      - doux . nombre déplacements
+      - voiture élec . nombre déplacements
+      - voiture thermique . nombre déplacements
+      - covoiturage . nombre déplacements
+      - transports en commun . nombre déplacements
+      - deux-roues motorisé . nombre déplacements
+
+pratique . futsal . déplacement exterieur . facteur déplacement:
+  formule: 
+    variations: 
+      - si: nombre transports = 0
+        alors: 0
+      - sinon: empreinte totale / nombre transports
+
+
+pratique . futsal . déplacement exterieur . empreinte totale :
+  formule:
+    somme:
+      - doux
+      - voiture élec
+      - voiture thermique
+      - covoiturage
+      - transports en commun
+      - deux-roues motorisé
+
+## Marche
+
+pratique . futsal . déplacement exterieur . doux:
+  titre: Vélo, trottinette ou à pied
+  formule: constantes . empreinte transport . doux * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . doux . nombre déplacements:
+  par défaut: 0
+
+## Voiture Elec
+
+pratique . futsal . déplacement exterieur . voiture élec:
+  titre: Voiture individuelle électrique
+  formule: constantes . empreinte transport . voiture élec * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . voiture élec . nombre déplacements:
+  par défaut: 0
+
+## Voiture thermique
+
+pratique . futsal . déplacement exterieur . voiture thermique:
+  titre: Voiture individuelle thermique
+  formule: constantes . empreinte transport . voiture thermique * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . voiture thermique . nombre déplacements:
+  par défaut: 0
+
+## Covoiturage
+
+pratique . futsal . déplacement exterieur . covoiturage:
+  formule: constantes . empreinte transport . covoiturage * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . covoiturage . nombre déplacements:
+  question: Covoiturage
+  par défaut: 0
+
+## Transports en commun
+
+pratique . futsal . déplacement exterieur . transports en commun:
+  formule: constantes . empreinte transport . transports en commun * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . transports en commun . nombre déplacements:
+  question: Transports en commun
+  par défaut: 0
+
+## Deux-roues motorisé
+
+pratique . futsal . déplacement exterieur . deux-roues motorisé:
+  formule: constantes . empreinte transport . deux-roues motorisé * nombre déplacements
+  unité: kgCO2e
+
+pratique . futsal . déplacement exterieur . deux-roues motorisé . nombre déplacements:
+  question: Deux-roues motorisé
+  par défaut: 0
+
+#########
+## Club
+#########
+
+pratique . club:
+  titre: Club FFF ou autre
+  applicable si: présent
+  formule: 500
+  unité: kgCO2e
+
+pratique . club . présent:
+  par défaut: non
+
+#########
+## International
+#########
+
+pratique . international:
+  applicable si: présent
+  formule: 1000
+  unité: kgCO2e
+
+pratique . international . présent:
+  question: Internationale
+  par défaut: non
 
 ################
 ## Alimentation
@@ -291,6 +566,12 @@ pratique . alimentation:
       # - séance loisir
 
 pratique . alimentation . surplus:
+  applicable si: 
+    une de ces conditions:
+      - pratique . loisir . présent
+      - pratique . futsal . présent
+      - pratique . club . présent
+      - pratique . international . présent
   unité: kgCO2e
   formule:
     variations: 
@@ -358,6 +639,11 @@ pratique . alimentation . surplus . empreinte carnivore:
 ## ALIMENTATION / CLUB
 
 pratique . alimentation . séance club:
+  applicable si: 
+    une de ces conditions:
+      - pratique . futsal . présent
+      - pratique . club . présent
+      - pratique . international . présent
   formule:
     somme:
       - barres
