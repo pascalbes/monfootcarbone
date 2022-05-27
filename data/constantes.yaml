@@ -1,0 +1,30 @@
+constantes:
+
+constantes . nb mois pratique: 10
+constantes . nb semaines pratique: 44
+
+## kgCO2 / km
+constantes . empreinte transport:
+constantes . empreinte transport . doux:
+  formule: 5
+  unité: kgCO2e
+
+constantes . empreinte transport . voiture élec:
+  formule: 10
+  unité: kgCO2e
+
+constantes . empreinte transport . voiture thermique:
+  formule: 20
+  unité: kgCO2e
+
+constantes . empreinte transport . covoiturage:
+  formule: 10
+  unité: kgCO2e
+
+constantes . empreinte transport . transports en commun:
+  formule: 2
+  unité: kgCO2e
+
+constantes . empreinte transport . deux-roues motorisé:
+  formule: 20
+  unité: kgCO2e

@@ -18,9 +18,9 @@ bilan:
     somme: 
       # - logement
       # - transport . empreinte
-      - alimentation
-      - spectateur
-      # - pratique
+      # - alimentation
+      # - spectateur
+      - pratique
       # - equipements
       # - numérique
       # - divers
