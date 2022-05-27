@@ -1,9 +1,15 @@
 equipements:
   abbréviation: equip.
   description: |
-    
+
   couleur: '#04a4ac'
   icônes: 🏘
+  applicable si: 
+    une de ces conditions:
+      - pratique . loisir . présent
+      - pratique . futsal . présent
+      - pratique . club . présent
+      - pratique . international . présent
   formule:
     somme: 
       - matériel * matériel . coefficient achat matériel * matériel . coefficient effort matériel
