@@ -8,12 +8,9 @@ spectateur:
     #  - suivi
     #  - numérique
      - déplacements
-  applicable si: présent
+  applicable si: pratique . spectateur . présent
   unité: kgCO2e
 
-spectateur . présent:
-  question: Êtes-vous spectateur d'événements sportifs (nécessitant des déplacements) ?
-  par défaut: oui
 
 ##############
 ## Déplacement
