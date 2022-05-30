@@ -5,17 +5,19 @@ spectateur:
     La catégorie "spectateur" intègre des déplacements pour assister à des événements sportifs
   formule: 
     somme:
-    #  - suivi
-    #  - numérique
-    - déplacements
-  applicable si: pratique . spectateur . présent
+    # - déplacements
+    - consommation
+    - téléspectateur
   unité: kgCO2e
 
 ####################
+####################
 ## Déplacements
+####################
 ####################
 
 spectateur . déplacements:
+  applicable si: pratique . spectateur . présent
   formule:
     somme: 
       - nationaux
@@ -46,15 +48,15 @@ spectateur . déplacements . locaux . empreinte totale:
     - transports en commun
     - deux-roues motorisé
 
-# spectateur . déplacements . locaux . nombre:
-#   applicable si: présent
-#   question: A combien d'événements sportifs pour lesquels vous effectuez un déplacement d’envergure locale ou régionale assistez-vous sur une année ?
-#   par défaut: 4
-#   suggestions:
-#     1 fois / trimestre: 4
-#     1 fois / mois: 12
-#     toutes les semaines: 52
-#   unité: déplacements
+spectateur . déplacements . locaux . nombre:
+  applicable si: présent
+  question: En moyenne, combien de fois par mois vous déplacez-vous pour assister à un match à l’échelle locale ou régionale ?
+  par défaut: 1
+  suggestions:
+    1 fois / semaine: 4
+    1 fois / 2 semaines: 2
+    1 fois / mois: 1
+  unité: déplacements
 
 ## Marche
 
@@ -242,3 +244,312 @@ spectateur . déplacements . nationaux . hébergement . nombre:
 spectateur . déplacements . nationaux . hébergement . empreinte:
   formule: 106.15
   unité: kgCO2e/nuits
+
+
+
+####################
+####################
+## Consommation
+####################
+####################
+
+spectateur . consommation:
+  applicable si: pratique . spectateur . présent
+  formule:
+    somme: 
+      - boissons
+      - equipements
+  unité: kgCO2e
+
+####################
+## Boissons
+####################
+
+spectateur . consommation . boissons:
+  formule: par match * (spectateur . déplacements . nationaux . matches . nombre + spectateur . déplacements . locaux . nombre)
+
+spectateur . consommation . boissons . par match:
+  formule:
+    somme:
+      - bière
+      - vin
+      - spiritueux
+      - soda
+      - jus
+      - eau en bouteille
+
+## Bière
+
+spectateur . consommation . boissons . bière:
+  formule: constantes . boissons . bière * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . bière . volume:
+  question: Bière
+  par défaut: 1
+
+## Vin
+
+spectateur . consommation . boissons . vin:
+  formule: constantes . boissons . vin * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . vin . volume:
+  question: Vin
+  par défaut: 0
+
+## Spiritueux
+
+spectateur . consommation . boissons . spiritueux:
+  formule: constantes . boissons . spiritueux * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . spiritueux . volume:
+  question: Spiritueux
+  par défaut: 0
+
+## Soda
+
+spectateur . consommation . boissons . soda:
+  formule: constantes . boissons . soda * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . soda . volume:
+  question: Soda
+  par défaut: 0.5
+
+## Jus
+
+spectateur . consommation . boissons . jus:
+  formule: constantes . boissons . jus * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . jus . volume:
+  question: Jus
+  par défaut: 0
+
+## Eau en bouteille
+
+spectateur . consommation . boissons . eau en bouteille:
+  formule: constantes . boissons . eau en bouteille * volume
+  unité: kgCO2e
+
+spectateur . consommation . boissons . eau en bouteille . volume:
+  question: Eau en bouteille
+  par défaut: 0
+
+####################
+## Equipements
+####################
+
+spectateur . consommation . equipements:
+  formule:
+    somme:
+      - echarpes
+      - maillots
+      - survêtements
+      - petits équipements
+
+## Echarpes / Bonnets / Casquettes
+
+spectateur . consommation . equipements . echarpes:
+  formule: constantes . equipements . echarpes * nombre
+  unité: kgCO2e
+
+spectateur . consommation . equipements . echarpes . nombre:
+  question: Echarpes / Bonnets / Casquettes
+  par défaut: 2
+
+## Maillots
+
+spectateur . consommation . equipements . maillots:
+  formule: constantes . equipements . maillots * nombre
+  unité: kgCO2e
+
+spectateur . consommation . equipements . maillots . nombre:
+  question: Maillots
+  par défaut: 1
+
+## Survêtements
+
+spectateur . consommation . equipements . survêtements:
+  formule: constantes . equipements . survêtements * nombre
+  unité: kgCO2e
+
+spectateur . consommation . equipements . survêtements . nombre:
+  question: Survêtements
+  par défaut: 0
+
+## Petits équipements de supporter
+
+spectateur . consommation . equipements . petits équipements:
+  formule: constantes . equipements . petits équipements * nombre
+  unité: kgCO2e
+
+spectateur . consommation . equipements . petits équipements . nombre:
+  question: Petits équipements de supporter (drapeaux, vuvuzelas, fumigènes, etc.)
+  par défaut: 3
+
+
+####################
+####################
+## Téléspectateur
+####################
+####################
+
+spectateur . téléspectateur:
+  applicable si: pratique . téléspectateur . présent
+  formule:
+    somme: 
+      - lieu
+      # - numérique
+      # - alimentation
+      # - boissons
+      # - télévision
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu:
+  formule: 12 * constantes . diffusion match * support . FE moyen * contexte . FE moyen
+  unité: kgCO2e
+
+
+####################
+## Lieu / Support
+####################
+
+spectateur . téléspectateur . lieu . support:
+
+spectateur . téléspectateur . lieu . support . FE moyen:
+  formule: 
+    variations: 
+      - si: total matches = 0
+        alors: 0
+      - sinon: empreinte totale / total matches
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . support . total matches:
+  formule:
+    somme:
+      - télévision . nombre
+      - tablette . nombre
+      - ordinateur . nombre
+      - téléphone . nombre
+
+spectateur . téléspectateur . lieu . support . empreinte totale:
+  unité: kgCO2e
+  formule: 
+    somme:
+      - télévision
+      - tablette
+      - ordinateur
+      - téléphone
+
+## télévision
+
+spectateur . téléspectateur . lieu . support . télévision:
+  formule: constantes . numérique . télévision * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . support . télévision . nombre:
+  question: Télévision
+  par défaut: 4
+
+## tablette
+
+spectateur . téléspectateur . lieu . support . tablette:
+  formule: constantes . numérique . tablette * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . support . tablette . nombre:
+  question: Tablette
+  par défaut: 0
+
+## ordinateur
+
+spectateur . téléspectateur . lieu . support . ordinateur:
+  formule: constantes . numérique . ordinateur * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . support . ordinateur . nombre:
+  question: Ordinateur
+  par défaut: 0
+
+## téléphone
+
+spectateur . téléspectateur . lieu . support . téléphone:
+  formule: constantes . numérique . téléphone * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . support . téléphone . nombre:
+  question: Téléphone
+  par défaut: 0
+
+####################
+## Lieu / Contexte
+####################
+
+spectateur . téléspectateur . lieu . contexte:
+
+spectateur . téléspectateur . lieu . contexte . FE moyen:
+  formule: 
+    variations: 
+      - si: total matches = 0
+        alors: 0
+      - sinon: empreinte totale / total matches
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . contexte . total matches:
+  formule:
+    somme:
+      - bar . nombre
+      - maison compagnie . nombre
+      - amis . nombre
+      - maison seul . nombre
+
+spectateur . téléspectateur . lieu . contexte . empreinte totale:
+  formule: 
+    somme:
+      - bar
+      - maison compagnie
+      - amis
+      - maison seul
+
+## bar
+
+spectateur . téléspectateur . lieu . contexte . bar:
+  formule: constantes . contexte . bar * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . contexte . bar . nombre:
+  question: Dans un bar
+  par défaut: 2
+
+## maison compagnie
+
+spectateur . téléspectateur . lieu . contexte . maison compagnie:
+  formule: constantes . contexte . maison compagnie * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . contexte . maison compagnie . nombre:
+  question: Chez vous avec des ami·e·s/de la famille
+  par défaut: 2
+
+## amis
+
+spectateur . téléspectateur . lieu . contexte . amis:
+  formule: constantes . contexte . amis * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . contexte . amis . nombre:
+  question: Chez des ami·e·s de la famille 
+  par défaut: 0
+
+## Seul·e chez vous
+
+spectateur . téléspectateur . lieu . contexte . maison seul:
+  formule: constantes . contexte . maison seul * nombre
+  unité: kgCO2e
+
+spectateur . téléspectateur . lieu . contexte . maison seul . nombre:
+  question: Seul·e chez vous
+  par défaut: 0

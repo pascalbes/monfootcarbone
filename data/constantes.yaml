@@ -3,6 +3,80 @@ constantes:
 constantes . nb mois pratique: 10
 constantes . nb mois matches: 10
 constantes . nb semaines pratique: 44
+constantes . diffusion match: 2
+
+## Lieux
+constantes . contexte:
+constantes . contexte . bar:
+  formule: 1
+  unité: kgCO2e
+constantes . contexte . maison compagnie:
+  formule: 10
+  unité: kgCO2e
+constantes . contexte . amis:
+  formule: 20
+  unité: kgCO2e
+constantes . contexte . maison seul:
+  formule: 30
+  unité: kgCO2e
+
+## Numérique
+constantes . numérique:
+constantes . numérique . télévision:
+  formule: 20
+  unité: kgCO2e
+constantes . numérique . tablette:
+  formule: 10
+  unité: kgCO2e
+constantes . numérique . ordinateur:
+  formule: 5
+  unité: kgCO2e
+constantes . numérique . téléphone:
+  formule: 50
+  unité: kgCO2e
+
+## Boissons
+
+constantes . boissons:
+constantes . boissons . bière:
+  formule: 50
+  unité: kgCO2e
+constantes . boissons . vin:
+  formule: 50
+  unité: kgCO2e
+constantes . boissons . spiritueux:
+  formule: 50
+  unité: kgCO2e
+constantes . boissons . soda:
+  formule: 50
+  unité: kgCO2e
+constantes . boissons . jus:
+  formule: 50
+  unité: kgCO2e
+constantes . boissons . eau en bouteille:
+  formule: 50
+  unité: kgCO2e
+
+## Equipements
+
+constantes . equipements:
+constantes . equipements . echarpes:
+  formule: 1
+  unité: kgCO2e
+
+constantes . equipements . maillots:
+  formule: 50
+  unité: kgCO2e
+
+constantes . equipements . survêtements:
+  formule: 50
+  unité: kgCO2e
+
+constantes . equipements . petits équipements:
+  formule: 50
+  unité: kgCO2e
+
+## Distance
 
 constantes . distances:
 constantes . distances . spectateur:
@@ -10,7 +84,8 @@ constantes . distances . spectateur . match local:
   formule: 50
   unité: km
 
-## kgCO2 / km
+## Transports
+
 constantes . empreinte transport:
 constantes . empreinte transport . doux:
   formule: 5
