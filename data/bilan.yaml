@@ -19,7 +19,7 @@ bilan:
       # - logement
       # - transport . empreinte
       # - alimentation
-      # - spectateur
+      - spectateur
       - pratique
       # - equipements
       # - numérique

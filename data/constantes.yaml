@@ -4,6 +4,12 @@ constantes . nb mois pratique: 10
 constantes . nb mois matches: 10
 constantes . nb semaines pratique: 44
 
+constantes . distances:
+constantes . distances . spectateur:
+constantes . distances . spectateur . match local:
+  formule: 50
+  unité: km
+
 ## kgCO2 / km
 constantes . empreinte transport:
 constantes . empreinte transport . doux:
