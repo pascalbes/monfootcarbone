@@ -1,6 +1,7 @@
 constantes:
 
 constantes . nb mois pratique: 10
+constantes . nb mois matches: 10
 constantes . nb semaines pratique: 44
 
 ## kgCO2 / km
@@ -27,4 +28,20 @@ constantes . empreinte transport . transports en commun:
 
 constantes . empreinte transport . deux-roues motorisé:
   formule: 20
+  unité: kgCO2e
+
+constantes . empreinte transport . ferroviaire:
+  formule: 2
+  unité: kgCO2e
+
+constantes . empreinte transport . avion:
+  formule: 200
+  unité: kgCO2e
+
+constantes . empreinte transport . car:
+  formule: 50
+  unité: kgCO2e
+
+constantes . empreinte transport . minibus:
+  formule: 50
   unité: kgCO2e
