@@ -1017,12 +1017,108 @@ pratique . club . déplacement exterieur hors national . ferroviaire . nombre d�
 
 pratique . international:
   applicable si: présent
-  formule: 1000
+  formule:
+    somme:
+      - séjour
+      - déplacements
   unité: kgCO2e
 
 pratique . international . présent:
   question: Internationale
   par défaut: non
+
+##########
+## Séjour
+##########
+
+pratique . international . séjour :
+  icônes: 🧃
+  titre: Sur une année, combien de jours passez-vous en compétition internationale en tant que joueur ?
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . international . séjour . nombre:
+  question: Sur une année, combien de jours passez-vous en compétition internationale en tant que joueur ?
+  par défaut: 2
+  unité: jour
+
+pratique . international . séjour . empreinte:
+  formule: 5.35
+  unité: kgCO2e/jour
+
+##########
+## Déplacements
+##########
+
+pratique . international . déplacements:
+  formule:
+    somme:
+      - avion
+      - voiture élec
+      - voiture thermique
+      - covoiturage
+      - car
+      - ferroviaire
+
+## Marche
+
+pratique . international . déplacements . avion:
+  titre: Avion
+  formule: constantes . empreinte transport . avion * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . avion . nombre heures:
+  par défaut: 0
+
+## Voiture Elec
+
+pratique . international . déplacements . voiture élec:
+  titre: Voiture individuelle électrique
+  formule: constantes . empreinte transport . voiture élec * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . voiture élec . nombre heures:
+  par défaut: 0
+
+## Voiture thermique
+
+pratique . international . déplacements . voiture thermique:
+  titre: Voiture individuelle thermique
+  formule: constantes . empreinte transport . voiture thermique * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . voiture thermique . nombre heures:
+  par défaut: 0
+
+## Covoiturage
+
+pratique . international . déplacements . covoiturage:
+  formule: constantes . empreinte transport . covoiturage * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . covoiturage . nombre heures:
+  question: Covoiturage
+  par défaut: 0
+
+## car
+
+pratique . international . déplacements . car:
+  formule: constantes . empreinte transport . car * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . car . nombre heures:
+  question: car
+  par défaut: 0
+
+## ferroviaire
+
+pratique . international . déplacements . ferroviaire:
+  formule: constantes . empreinte transport . ferroviaire * nombre heures
+  unité: kgCO2e
+
+pratique . international . déplacements . ferroviaire . nombre heures:
+  question: Train ou métro
+  par défaut: 0
 
 ###############################
 ###############################
