@@ -126,3 +126,16 @@ constantes . empreinte transport . car:
 constantes . empreinte transport . minibus:
   formule: 50
   unité: kgCO2e
+
+
+## Alimentation
+constantes . alimentation:
+constantes . alimentation . livraison:
+  formule: 50
+  unité: kgCO2e
+constantes . alimentation . emporter:
+  formule: 50
+  unité: kgCO2e
+constantes . alimentation . maison:
+  formule: 50
+  unité: kgCO2e

@@ -5,7 +5,7 @@ spectateur:
     La catégorie "spectateur" intègre des déplacements pour assister à des événements sportifs
   formule: 
     somme:
-    # - déplacements
+    - déplacements
     - consommation
     - téléspectateur
   unité: kgCO2e
@@ -402,10 +402,10 @@ spectateur . téléspectateur:
   formule:
     somme: 
       - lieu
-      # - numérique
-      # - alimentation
-      # - boissons
-      # - télévision
+      - numérique
+      - alimentation
+      - boissons
+      - télévision
   unité: kgCO2e
 
 spectateur . téléspectateur . lieu:
@@ -553,3 +553,140 @@ spectateur . téléspectateur . lieu . contexte . maison seul:
 spectateur . téléspectateur . lieu . contexte . maison seul . nombre:
   question: Seul·e chez vous
   par défaut: 0
+
+####################
+## Alimentation
+####################
+
+spectateur . téléspectateur . alimentation:
+  formule: empreinte * 12 * spectateur . téléspectateur . lieu . support . total matches
+
+spectateur . téléspectateur . alimentation . empreinte:
+  formule:
+    variations: 
+      - si: type = 'livraison'
+        alors: constantes . alimentation . livraison
+      - si: type = 'emporter'
+        alors: constantes . alimentation . emporter
+      - si: type = 'maison'
+        alors: constantes . alimentation . maison
+
+spectateur . téléspectateur . alimentation . type:
+  question: En général, quelle est votre consommation alimentaire devant ces matchs ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - livraison
+        - emporter
+        - maison
+
+spectateur . téléspectateur . alimentation . type . livraison:
+  titre: Livraison de nourriture
+spectateur . téléspectateur . alimentation . type . emporter:
+  titre: Nourriture à emporter
+spectateur . téléspectateur . alimentation . type . maison:
+  titre: Nourriture maison
+
+####################
+## Boissons
+####################
+
+spectateur . téléspectateur . boissons:
+  formule: 12 * empreinte totale * spectateur . téléspectateur . lieu . support . total matches
+
+spectateur . téléspectateur . boissons . empreinte totale:
+  formule:
+    somme:
+      - bière
+      - vin
+      - spiritueux
+      - soda
+      - jus
+
+## Bière
+
+spectateur . téléspectateur . boissons . bière:
+  formule: constantes . boissons . bière * volume
+  unité: kgCO2e
+
+spectateur . téléspectateur . boissons . bière . volume:
+  question: Bière
+  par défaut: 1
+
+## Vin
+
+spectateur . téléspectateur . boissons . vin:
+  formule: constantes . boissons . vin * volume
+  unité: kgCO2e
+
+spectateur . téléspectateur . boissons . vin . volume:
+  question: Vin
+  par défaut: 0
+
+## Spiritueux
+
+spectateur . téléspectateur . boissons . spiritueux:
+  formule: constantes . boissons . spiritueux * volume
+  unité: kgCO2e
+
+spectateur . téléspectateur . boissons . spiritueux . volume:
+  question: Spiritueux
+  par défaut: 0
+
+## Soda
+
+spectateur . téléspectateur . boissons . soda:
+  formule: constantes . boissons . soda * volume
+  unité: kgCO2e
+
+spectateur . téléspectateur . boissons . soda . volume:
+  question: Soda
+  par défaut: 0
+
+## Jus
+
+spectateur . téléspectateur . boissons . jus:
+  formule: constantes . boissons . jus * volume
+  unité: kgCO2e
+
+spectateur . téléspectateur . boissons . jus . volume:
+  question: Jus
+  par défaut: 0
+
+####################
+## Numérique
+####################
+
+spectateur . téléspectateur . numérique:
+  formule: 12 * nombre heures * spectateur . téléspectateur . lieu . support . FE moyen
+
+spectateur . téléspectateur . numérique . nombre heures:
+  question: En moyenne, hors visionnage de matchs, combien d’heures passez-vous par semaine à visionner du contenu autour du football (résumés de matchs, live twitch de décryptage / commentaire de match, émissions d’actualité footballistique, etc.) ?
+  par défaut: 3
+  unité: h
+
+####################
+## Télévision
+####################
+
+spectateur . téléspectateur . télévision:
+  formule:
+    variations:
+      - si: présent
+        alors: 371 / (age + 1)
+      - sinon: 0
+  unité: kgCO2e
+
+spectateur . téléspectateur . télévision . présent:
+  toutes ces conditions:
+    - possession = non
+
+spectateur . téléspectateur . télévision . possession:
+  question: Si vous ne regardiez pas de sport à la télévision, auriez-vous une télévision ?
+  par défaut: oui
+
+spectateur . téléspectateur . télévision . age:
+  question: Quel âge à votre télévision ?
+  par défaut: 4
+  unité: ans
