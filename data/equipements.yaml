@@ -2,7 +2,7 @@ equipements:
   abbréviation: equip.
   description: |
 
-  couleur: '#04a4ac'
+  couleur: '#20245C'
   icônes: 🏘
   applicable si: 
     une de ces conditions:
@@ -73,7 +73,7 @@ equipements . matériel . coefficient achat matériel:
 
 equipements . matériel . coefficient achat matériel . type:
   question: 'En général le matériel que vous utilisez est :'
-  par défaut: "'Moyen'"
+  par défaut: "'acheté neuf'"
   formule:
     une possibilité: 
       choix obligatoire: oui
@@ -114,7 +114,7 @@ equipements . matériel . maillots:
 
 equipements . matériel . maillots . nombre:
   question: Maillots ?
-  par défaut: 4
+  par défaut: 2
 
 equipements . matériel . maillots . empreinte:
   formule: 5.35
@@ -129,7 +129,7 @@ equipements . matériel . short et collants:
 
 equipements . matériel . short et collants . nombre:
   question: Shorts et collants ?
-  par défaut: 1
+  par défaut: 2
 
 equipements . matériel . short et collants . empreinte:
   formule: 6.4
@@ -144,7 +144,7 @@ equipements . matériel . chaussures:
 
 equipements . matériel . chaussures . nombre:
   question: Paire de chaussures ?
-  par défaut: 2
+  par défaut: 1
 
 equipements . matériel . chaussures . empreinte:
   formule: 18.7
@@ -174,7 +174,7 @@ equipements . matériel . chaussettes:
 
 equipements . matériel . chaussettes . nombre:
   question: Chaussettes ?
-  par défaut: 2
+  par défaut: 3
 
 equipements . matériel . chaussettes . empreinte:
   formule: 18.7
@@ -204,7 +204,7 @@ equipements . matériel . matériel de récupération électrique:
 
 equipements . matériel . matériel de récupération électrique . nombre:
   question: Matériel de récupération électrique (électrostimulateur, pistolet de massage, etc.)  ?
-  par défaut: 2
+  par défaut: 0
 
 equipements . matériel . matériel de récupération électrique . empreinte:
   formule: 18.7

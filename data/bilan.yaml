@@ -16,15 +16,10 @@ bilan:
 
   formule: 
     somme: 
-      # - logement
-      # - transport . empreinte
-      # - alimentation
       - spectateur
       - pratique
-      # - equipements
-      # - numérique
-      # - divers
-      # - services publics
+      - virtuel
+      - equipements
   références: 
     - https://avenirclimatique.org/action/
     - https://www.statistiques.developpement-durable.gouv.fr/estimation-de-lempreinte-carbone-de-1995-2019?rubrique=27&dossier=1286

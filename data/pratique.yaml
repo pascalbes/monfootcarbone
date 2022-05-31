@@ -2,7 +2,7 @@ pratique:
   abbréviation: prat.
   description: |
     
-  couleur: '#04a4ac'
+  couleur: '#2B6DB1'
   icônes: 🏘
   formule:
     somme: 
@@ -10,8 +10,7 @@ pratique:
       - futsal
       - club
       - international
-      # - alimentation
-      # - spectateur
+      - alimentation
   unité: kgCO2e
 
 

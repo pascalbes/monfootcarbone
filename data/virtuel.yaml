@@ -1,12 +1,12 @@
 virtuel: 
-  couleur: '#695F00'
+  couleur: '#DC0023'
   icônes: 📺
   description: | 
     La catégorie "Pratique Virtuelle" intègre ....
   formule: 
     somme:
-    # - actualités
-    # - paris
+    - actualités
+    - paris
     - jeux vidéos
   unité: kgCO2e
 
@@ -47,6 +47,7 @@ virtuel . actualités . type . jamais:
 ####################
 
 virtuel . paris:
+  applicable si: pratique . paris . présent
   unité: kgCO2e
   formule: 
     somme:
@@ -97,6 +98,7 @@ virtuel . paris . amicaux . type . jamais:
 ####################
 
 virtuel . jeux vidéos:
+  applicable si: pratique . jeux vidéos . présent
   unité: kgCO2e
   formule: 
     somme:
