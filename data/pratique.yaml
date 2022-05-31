@@ -1279,7 +1279,7 @@ pratique . alimentation . séance club . boissons:
   unité: kgCO2e
 
 pratique . alimentation . séance club . boissons . nombre:
-  question: Boisson énergétique
+  question: Boisson énergétique (L)
   par défaut: 0.5
   unité: L
 
@@ -1312,7 +1312,7 @@ pratique . alimentation . séance club . sodas:
   unité: kgCO2e
 
 pratique . alimentation . séance club . sodas . nombre:
-  question: Sodas
+  question: Sodas (L)
   par défaut: 0
   unité: L
 
@@ -1378,7 +1378,7 @@ pratique . alimentation . séance loisir . boissons:
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . boissons . nombre:
-  question: Boisson énergétique
+  question: Boisson énergétique (L)
   par défaut: 0
   unité: L
 
@@ -1428,7 +1428,7 @@ pratique . alimentation . séance loisir . sodas:
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . sodas . nombre:
-  question: Sodas
+  question: Sodas (L)
   par défaut: 0.5
   unité: L
 
