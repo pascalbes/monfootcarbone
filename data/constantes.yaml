@@ -20,6 +20,23 @@ constantes . contexte . maison seul:
   formule: 30
   unité: kgCO2e
 
+## Paris
+
+constantes . paris:
+constantes . paris . payants:
+  formule: 20
+  unité: kgCO2e
+constantes . paris . amicaux:
+constantes . paris . amicaux . tout le temps:
+  formule: 10
+  unité: kgCO2e
+constantes . paris . amicaux . de temps en temps:
+  formule: 5
+  unité: kgCO2e
+constantes . paris . amicaux . jamais:
+  formule: 50
+  unité: kgCO2e
+
 ## Numérique
 constantes . numérique:
 constantes . numérique . télévision:
@@ -33,6 +50,17 @@ constantes . numérique . ordinateur:
   unité: kgCO2e
 constantes . numérique . téléphone:
   formule: 50
+  unité: kgCO2e
+
+constantes . numérique . actualités:
+constantes . numérique . actualités . assidument:
+  formule: 50
+  unité: kgCO2e
+constantes . numérique . actualités . de temps en temps:
+  formule: 20
+  unité: kgCO2e
+constantes . numérique . actualités . jamais:
+  formule: 10
   unité: kgCO2e
 
 ## Boissons

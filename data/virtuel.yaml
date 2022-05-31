@@ -1,0 +1,93 @@
+virtuel: 
+  couleur: '#695F00'
+  icônes: 📺
+  description: | 
+    La catégorie "Pratique Virtuelle" intègre ....
+  formule: 
+    somme:
+    # - actualités
+    - paris
+    # - jeux vidéos
+  unité: kgCO2e
+
+####################
+## Actualités
+####################
+
+virtuel . actualités:
+  unité: kgCO2e
+  formule:
+    variations: 
+      - si: type = 'assidument'
+        alors: constantes . numérique . actualités . assidument
+      - si: type = 'de temps en temps'
+        alors: constantes . numérique . actualités . de temps en temps
+      - si: type = 'jamais'
+        alors: constantes . numérique . actualités . jamais
+
+virtuel . actualités . type:
+  question: Suivez-vous l’actualité liée au football sur les réseaux sociaux ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - assidument
+        - de temps en temps
+        - jamais
+
+virtuel . actualités . type . assidument:
+  titre: Assidument
+virtuel . actualités . type . de temps en temps:
+  titre: De temps en temps
+virtuel . actualités . type . jamais:
+  titre: Jamais
+
+####################
+## Paris Sportifs
+####################
+
+virtuel . paris:
+  unité: kgCO2e
+  formule: 
+    somme:
+      - payants
+      - amicaux
+
+## Payants
+
+virtuel . paris . payants:
+  formule: nombre * 12 * constantes . paris . payants
+
+virtuel . paris . payants . nombre:
+  question: Combien de paris effectuez-vous par mois ?
+  par défaut: 4
+  unité: paris
+
+## Amicaux
+
+virtuel . paris . amicaux:
+  formule:
+    variations: 
+      - si: type = 'tout le temps'
+        alors: constantes . paris . amicaux . tout le temps
+      - si: type = 'de temps en temps'
+        alors: constantes . paris . amicaux . de temps en temps
+      - si: type = 'jamais'
+        alors: constantes . paris . amicaux . jamais
+
+virtuel . paris . amicaux . type:
+  question: Jouez-vous sur des plateformes de paris amicaux (Mon Petit Gazon) ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - tout le temps
+        - de temps en temps
+        - jamais
+
+virtuel . paris . amicaux . type . tout le temps:
+  titre: Oui, à chaque compétition majeure
+virtuel . paris . amicaux . type . de temps en temps:
+  titre: Oui, de temps en temps
+virtuel . paris . amicaux . type . jamais:
+  titre: Non
