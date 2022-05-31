@@ -123,7 +123,7 @@ pratique . loisir . intérieur . empreinte:
 ## C.1.2
 
 pratique . loisir . distance:
-  question: En moyenne, quelle distance (aller-retour) pour vous rendre sur le lieu de pratique parcourez-vous à chaque fois ?
+  question: En moyenne, quelle distance (aller-retour) pour vous rendre sur le lieu de pratique loisir parcourez-vous à chaque fois ?
   par défaut: 20
   unité: km
 
@@ -264,7 +264,7 @@ pratique . futsal . entrainement:
   unité: kgCO2
 
 pratique . futsal . nb entrainements:
-  question: Quel est votre rythme d’entraînement hebdomadaire ?
+  question: En période d’activité, quel est votre rythme d’entraînement hebdomadaire de futsal ?
   par défaut: 2
   unité: entraînement / semaine
 
@@ -291,7 +291,7 @@ pratique . futsal . matches:
   unité: kgCO2
 
 pratique . futsal . fréquence:
-  question: Quelle est votre fréquence de matchs ?
+  question: En saison de compétition, quelle est votre fréquence de matchs de futsal ?
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -321,7 +321,7 @@ pratique . futsal . déplacement domicile:
   unité: kgCO2
 
 pratique . futsal . déplacement domicile . distance:
-  question: En moyenne, quelle distance (aller-retour) parcourez-vous pour vous rendre à l’entraînement et à vos matchs à domicile ?
+  question: En moyenne, quelle distance (aller-retour) parcourez-vous pour vous rendre à l’entraînement et à vos matchs de fustal à domicile ?
   par défaut: 20
   unité: km
 
@@ -537,6 +537,7 @@ pratique . club:
     somme:
       - entrainement
       - déplacement domicile
+      - matches
       - déplacement exterieur hors national
       - déplacement exterieur national
   unité: kgCO2
@@ -576,15 +577,15 @@ pratique . club . ligue . ligue homme . niveau pratique:
         - départemental
 
 pratique . club . ligue . ligue homme . niveau pratique . pro:
-  titre: L1 - L2 (pro)
+  titre: Ligue 1 Uber Eats ou Ligue 2 BKT 
 pratique . club . ligue . ligue homme . niveau pratique . amateur 1:
-  titre: National (principalement amateur)
+  titre: National 1
 pratique . club . ligue . ligue homme . niveau pratique . amateur 2:
-  titre: National 2 (amateur, division de la France en 4)
+  titre: National 2
 pratique . club . ligue . ligue homme . niveau pratique . régional:
-  titre: National 3 - Régional (ligues régionales)
+  titre: National 3 ou Régional (ligues régionales)
 pratique . club . ligue . ligue homme . niveau pratique . départemental:
-  titre: Disctrict (ligues départementales)
+  titre: Disctrict
 
 
 pratique . club . ligue . ligue femme . niveau pratique:
@@ -594,14 +595,14 @@ pratique . club . ligue . ligue femme . niveau pratique:
     une possibilité: 
       choix obligatoire: oui
       possibilités:
-        - division nationale 1 Arkema
-        - division nationale 2
-        - régional 1
+        - division 1 Arkema
+        - division 2
+        - régional
         - district
 
-pratique . club . ligue . ligue femme . niveau pratique . division nationale 1 Arkema:
-pratique . club . ligue . ligue femme . niveau pratique . division nationale 2:
-pratique . club . ligue . ligue femme . niveau pratique . régional 1:
+pratique . club . ligue . ligue femme . niveau pratique . division 1 Arkema:
+pratique . club . ligue . ligue femme . niveau pratique . division 2:
+pratique . club . ligue . ligue femme . niveau pratique . régional:
 pratique . club . ligue . ligue femme . niveau pratique . district:
 
 
@@ -614,7 +615,7 @@ pratique . club . entrainement:
   unité: kgCO2
 
 pratique . club . nb entrainements:
-  question: Quel est votre rythme d’entraînement hebdomadaire en club ?
+  question: En période d’activité, quel est votre rythme d’entraînement hebdomadaire ?
   par défaut: 2
   unité: entraînement / semaine
 
@@ -632,11 +633,11 @@ pratique . club . FE Stade:
         alors: 50
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'départemental'
         alors: 60
-      - si: pratique . club . ligue . ligue femme . niveau pratique = 'division nationale 1 Arkema'
+      - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 1 Arkema'
         alors: 40
-      - si: pratique . club . ligue . ligue femme . niveau pratique = 'division nationale 2'
+      - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 2'
         alors: 20
-      - si: pratique . club . ligue . ligue femme . niveau pratique = 'régional 1'
+      - si: pratique . club . ligue . ligue femme . niveau pratique = 'régional'
         alors: 20
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'district'
         alors: 20
@@ -745,6 +746,37 @@ pratique . club . déplacement domicile . deux-roues motorisé . nombre déplace
   question: Deux-roues motorisé
   par défaut: 0
 
+#######
+## CLUB / Matches
+#######
+
+pratique . club . matches:
+  formule: pratique . club . FE Stade * constantes . nb semaines pratique * nb matches
+  unité: kgCO2
+
+pratique . club . fréquence:
+  question: En saison de compétition, quelle est votre fréquence de matchs ?
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - hebodmadaire
+        - bimensuel
+        - mensuel
+
+pratique . club . fréquence . hebodmadaire:
+pratique . club . fréquence . bimensuel:
+pratique . club . fréquence . mensuel:
+
+pratique . club . nb matches:
+  formule:
+    variations:
+      - si: fréquence = 'hebodmadaire'
+        alors: 4
+      - si: fréquence = 'bimensuel'
+        alors: 2
+      - si: fréquence = 'mensuel'
+        alors: 1
 
 #######
 ## CLUB / Match / National
@@ -756,8 +788,8 @@ pratique . club . déplacement exterieur national:
       - pratique . club . ligue . ligue homme . niveau pratique = 'pro'
       - pratique . club . ligue . ligue homme . niveau pratique = 'amateur 1'
       - pratique . club . ligue . ligue homme . niveau pratique = 'amateur 2'
-      - pratique . club . ligue . ligue femme . niveau pratique = 'division nationale 1 Arkema'
-      - pratique . club . ligue . ligue femme . niveau pratique = 'division nationale 2'
+      - pratique . club . ligue . ligue femme . niveau pratique = 'division 1 Arkema'
+      - pratique . club . ligue . ligue femme . niveau pratique = 'division 2'
   formule: nombre total heures * facteur * constantes . nb mois matches
   unité: kgCO2
 
@@ -1130,7 +1162,7 @@ pratique . alimentation:
     somme:
       - surplus
       - séance club
-      # - séance loisir
+      - séance loisir
 
 pratique . alimentation . surplus:
   applicable si: 
@@ -1206,6 +1238,9 @@ pratique . alimentation . surplus . empreinte carnivore:
 ## ALIMENTATION / CLUB
 
 pratique . alimentation . séance club:
+  formule: par séance * constantes . nb semaines pratique * ((pratique . club . nb matches + pratique . futsal . matches) * constantes . nb mois pratique + (pratique . futsal . nb entrainements + pratique . club . nb entrainements))
+
+pratique . alimentation . séance club . par séance:
   applicable si: 
     une de ces conditions:
       - pratique . futsal . présent
@@ -1299,5 +1334,121 @@ pratique . alimentation . séance club . alcool . nombre:
   unité: L
 
 pratique . alimentation . séance club . alcool . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+
+## ALIMENTATION / LOISIR
+
+pratique . alimentation . séance loisir:
+  formule: par séance * pratique . loisir . nombre déplacements pratique * constantes . nb mois pratique
+
+pratique . alimentation . séance loisir . par séance:
+  applicable si: pratique . loisir . présent
+  formule:
+    somme:
+      - barres
+      - boissons
+      - fruits
+      - sodas
+      - alcool
+
+##
+
+pratique . alimentation . séance loisir . barres:
+  titre: Barres
+  icônes: 🍫
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . barres . nombre:
+  question: Barres
+  par défaut: 1
+
+pratique . alimentation . séance loisir . barres . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+  ##
+
+pratique . alimentation . séance loisir . boissons:
+  icônes: 🧃
+  titre: Boisson énergétique (L)
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . boissons . nombre:
+  question: Boisson énergétique
+  par défaut: 0
+  unité: L
+
+pratique . alimentation . séance loisir . boissons . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+  ##
+
+pratique . alimentation . séance loisir . fruits:
+  icônes: 🍎🍐🍊
+  titre: Fruits
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . fruits . nombre:
+  question: Fruits
+  par défaut: 1
+
+pratique . alimentation . séance loisir . fruits . empreinte:
+  formule: 5.35
+  unité: kgCO2e
+
+##
+
+pratique . alimentation . séance loisir . eau en bouteille:
+  icônes: 🥤
+  titre: Eau en bouteille (L)
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . eau en bouteille . nombre:
+  question: Eau en bouteille (L)
+  par défaut: 0
+  unité: L
+
+pratique . alimentation . séance loisir . eau en bouteille . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+  ##
+
+pratique . alimentation . séance loisir . sodas:
+  icônes: 🥤
+  titre: Sodas (L)
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . sodas . nombre:
+  question: Sodas
+  par défaut: 0.5
+  unité: L
+
+pratique . alimentation . séance loisir . sodas . empreinte:
+  formule: 5.35
+  unité: kgCO2e/L
+
+  ##
+
+pratique . alimentation . séance loisir . alcool:
+  icônes: 🍺🍷
+  titre: 'Alcool : bière, vin, etc. (L)'
+  formule: empreinte * nombre
+  unité: kgCO2e
+
+pratique . alimentation . séance loisir . alcool . nombre:
+  question: 'Alcool : bière, vin, etc. (L)'
+  par défaut: 0.5
+  unité: L
+
+pratique . alimentation . séance loisir . alcool . empreinte:
   formule: 5.35
   unité: kgCO2e/L

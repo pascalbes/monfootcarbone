@@ -77,7 +77,7 @@ virtuel . paris . amicaux:
         alors: constantes . paris . amicaux . jamais
 
 virtuel . paris . amicaux . type:
-  question: Jouez-vous sur des plateformes de paris amicaux (Mon Petit Gazon) ?
+  question: Jouez-vous sur des plateformes de paris amicaux (du type « Mon Petit Gazon ») ?
   formule: 
     une possibilité: 
       choix obligatoire: oui
