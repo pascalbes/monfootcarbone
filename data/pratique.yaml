@@ -1224,7 +1224,7 @@ pratique . alimentation . surplus . empreinte carnivore:
 ## ALIMENTATION / CLUB
 
 pratique . alimentation . séance club:
-  formule: par séance * constantes . nb semaines pratique * ((pratique . club . nb matches + pratique . futsal . matches) * constantes . nb mois pratique + (pratique . futsal . nb entrainements + pratique . club . nb entrainements))
+  formule: par séance * (pratique . club . nb entrainements + pratique . futsal . nb entrainements) * constantes . nb semaines pratique + (pratique . club . nb matches + pratique . futsal . matches) * constantes . nb mois pratique
 
 pratique . alimentation . séance club . par séance:
   applicable si: 
@@ -1250,7 +1250,7 @@ pratique . alimentation . séance club . barres:
 
 pratique . alimentation . séance club . barres . nombre:
   question: Barres (kg)
-  par défaut: 2
+  par défaut: 0.1
 
   ##
 
@@ -1329,7 +1329,7 @@ pratique . alimentation . séance loisir . barres:
 
 pratique . alimentation . séance loisir . barres . nombre:
   question: Barres (kg)
-  par défaut: 1
+  par défaut: 0.1
 
   ##
 
