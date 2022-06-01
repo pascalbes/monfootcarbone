@@ -31,7 +31,7 @@ spectateur . déplacements:
 spectateur . déplacements . locaux:
   applicable si: présent
   titre: Locale ou régionale
-  formule: empreinte totale * constantes . distances . spectateur . match local
+  formule: empreinte totale * constantes . pratique . distance . départementale
   unité: kgCO2e
 
 spectateur . déplacements . locaux . présent:
@@ -274,7 +274,7 @@ spectateur . consommation . boissons . par match:
       - bière
       - vin
       - spiritueux
-      - soda
+      - sodas
       - jus
       - eau en bouteille
 
@@ -313,13 +313,13 @@ spectateur . consommation . boissons . spiritueux . volume:
 
 ## Soda
 
-spectateur . consommation . boissons . soda:
-  titre: Soda (L)
-  formule: constantes . boissons . soda * volume
+spectateur . consommation . boissons . sodas:
+  titre: Sodas (L)
+  formule: constantes . boissons . sodas * volume
   unité: kgCO2e
 
-spectateur . consommation . boissons . soda . volume:
-  question: Soda (L)
+spectateur . consommation . boissons . sodas . volume:
+  question: Sodas (L)
   par défaut: 0.5
 
 ## Jus
@@ -607,7 +607,7 @@ spectateur . téléspectateur . boissons . empreinte totale:
       - bière
       - vin
       - spiritueux
-      - soda
+      - sodas
       - jus
 
 ## Bière
@@ -645,13 +645,13 @@ spectateur . téléspectateur . boissons . spiritueux . volume:
 
 ## Soda
 
-spectateur . téléspectateur . boissons . soda:
-  titre: Soda (L)
-  formule: constantes . boissons . soda * volume
+spectateur . téléspectateur . boissons . sodas:
+  titre: Sodas (L)
+  formule: constantes . boissons . sodas * volume
   unité: kgCO2e
 
-spectateur . téléspectateur . boissons . soda . volume:
-  question: Soda (L)
+spectateur . téléspectateur . boissons . sodas . volume:
+  question: Sodas (L)
   par défaut: 0
 
 ## Jus

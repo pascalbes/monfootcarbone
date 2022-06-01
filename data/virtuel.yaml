@@ -115,14 +115,14 @@ virtuel . jeux vidéos . sorare:
       - si: type = non
         alors: 0
       - si: type = oui
-        alors: montant * constantes . jeux vidéos . sorare
+        alors: montant * constantes . jeux vidéos . sorare * 12
 
 virtuel . jeux vidéos . sorare . type:
   question: Jouez-vous sur la plateforme Sorare ?
   par défaut: non
 
 virtuel . jeux vidéos . sorare . montant:
-  question: Quel est votre montant d’investissement total sur Sorare ?
+  question: En moyenne, sur un mois, combien effectuez-vous de transactions sur Sorare ?
   par défaut: 10
   unité: euros
 

@@ -34,7 +34,6 @@ pratique . téléspectateur . présent:
 
 pratique . paris:
   titre: Paris sportifs
-  formule: 1000
   unité: kgCO2e
 
 pratique . paris . présent:
@@ -42,7 +41,6 @@ pratique . paris . présent:
 
 pratique . jeux vidéos:
   titre: Jeux vidéos
-  formule: 2000
   unité: kgCO2e
 
 pratique . jeux vidéos . présent:
@@ -79,46 +77,34 @@ pratique . loisir . nombre déplacements pratique:
 
 pratique . loisir . exterieur:
   titre: Extérieur (city, terrain synthétique, terrain en bitume)
-  formule: empreinte * nombre pratiques * constantes . nb mois pratique
+  formule: constantes . pratique . loisir . exterieur * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
 pratique . loisir . exterieur . nombre pratiques:
   question: Extérieur (city, terrain synthétique, terrain en bitume)
   par défaut: 4
 
-pratique . loisir . exterieur . empreinte:
-  formule: 5.35
-  unité: kgCO2e
-
 ##
 
 pratique . loisir . exterieur herbe:
   titre: Extérieur (terrain en herbe)
-  formule: empreinte * nombre pratiques * constantes . nb mois pratique
+  formule: constantes . pratique . loisir . exterieur herbe . empreinte * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
 pratique . loisir . exterieur herbe . nombre pratiques:
   question: Extérieur (terrain en herbe)
   par défaut: 4
 
-pratique . loisir . exterieur herbe . empreinte:
-  formule: 5.35
-  unité: kgCO2e
-
 ##
 
 pratique . loisir . intérieur:
   titre: Intérieur (gymnase)
-  formule: empreinte * nombre pratiques * constantes . nb mois pratique
+  formule: constantes . pratique . loisir . intérieur * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
 pratique . loisir . intérieur . nombre pratiques:
   question: Intérieur (gymnase)
   par défaut: 4
-
-pratique . loisir . intérieur . empreinte:
-  formule: 5.35
-  unité: kgCO2e
 
 ## C.1.2
 
@@ -273,15 +259,15 @@ pratique . futsal . FE Gymnase:
   formule:
     variations: 
       - si: niveau pratique = 'D1 futsal'
-        alors: 100
+        alors: constantes . pratique . futsal . D1 futsal . FE
       - si: niveau pratique = 'D2 futsal'
-        alors: 70
+        alors: constantes . pratique . futsal . D2 futsal . FE
       - si: niveau pratique = 'régional'
-        alors: 40
+        alors: constantes . pratique . futsal . régional . FE
       - si: niveau pratique = 'district'
-        alors: 20
+        alors: constantes . pratique . futsal . district . FE
       - si: niveau pratique = 'club hors compétition'
-        alors: 10
+        alors: constantes . pratique . futsal . club hors compétition . FE
 
 ## Futsal / matches
 
@@ -426,15 +412,15 @@ pratique . futsal . déplacement exterieur . distance:
   formule:
     variations: 
       - si: niveau pratique = 'D1 futsal'
-        alors: 100
+        alors: constantes . pratique . distance . nationale
       - si: niveau pratique = 'D2 futsal'
-        alors: 70
+        alors: constantes . pratique . distance . nationale
       - si: niveau pratique = 'régional'
-        alors: 40
+        alors: constantes . pratique . distance . régionale
       - si: niveau pratique = 'district'
-        alors: 20
+        alors: constantes . pratique . distance . départementale
       - si: niveau pratique = 'club hors compétition'
-        alors: 10
+        alors: constantes . pratique . distance . départementale
 
 pratique . futsal . déplacement exterieur . nombre transports:
   formule: 
@@ -611,7 +597,7 @@ pratique . club . ligue . ligue femme . niveau pratique . district:
 ############
 
 pratique . club . entrainement:
-  formule: FE Stade * constantes . nb semaines pratique * nb entrainements
+  formule: 0.61 * constantes . nb semaines pratique * nb entrainements
   unité: kgCO2
 
 pratique . club . nb entrainements:
@@ -624,25 +610,25 @@ pratique . club . FE Stade:
   formule:
     variations: 
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'pro'
-        alors: 60
+        alors: 6.86
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'amateur 1'
-        alors: 50
+        alors: 3.36
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'amateur 2'
-        alors: 60
+        alors: 1.92
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'régional'
-        alors: 50
+        alors: 1.23
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'départemental'
-        alors: 60
+        alors: 0.79
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 1 Arkema'
-        alors: 40
+        alors: 6.86
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 2'
-        alors: 20
+        alors: 3.36
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'régional'
-        alors: 20
+        alors: 1.23
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'district'
-        alors: 20
+        alors: 0.79
       - si: pratique . club . ligue = 'hors FFF'
-        alors: 10
+        alors: 0.61
 
 
 #######
@@ -825,7 +811,7 @@ pratique . club . déplacement exterieur national . empreinte totale :
 
 pratique . club . déplacement exterieur national . avion:
   titre: Avion
-  formule: constantes . empreinte transport . avion * nombre heures
+  formule: constantes . empreinte transport . avion heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . avion . nombre heures:
@@ -835,7 +821,7 @@ pratique . club . déplacement exterieur national . avion . nombre heures:
 
 pratique . club . déplacement exterieur national . voiture élec:
   titre: Voiture individuelle électrique
-  formule: constantes . empreinte transport . voiture élec * nombre heures
+  formule: constantes . empreinte transport . voiture élec heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . voiture élec . nombre heures:
@@ -845,7 +831,7 @@ pratique . club . déplacement exterieur national . voiture élec . nombre heure
 
 pratique . club . déplacement exterieur national . voiture thermique:
   titre: Voiture individuelle thermique
-  formule: constantes . empreinte transport . voiture thermique * nombre heures
+  formule: constantes . empreinte transport . voiture thermique heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . voiture thermique . nombre heures:
@@ -854,7 +840,7 @@ pratique . club . déplacement exterieur national . voiture thermique . nombre h
 ## Covoiturage
 
 pratique . club . déplacement exterieur national . covoiturage:
-  formule: constantes . empreinte transport . covoiturage * nombre heures
+  formule: constantes . empreinte transport . covoiturage heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . covoiturage . nombre heures:
@@ -864,7 +850,7 @@ pratique . club . déplacement exterieur national . covoiturage . nombre heures:
 ## car
 
 pratique . club . déplacement exterieur national . car:
-  formule: constantes . empreinte transport . car * nombre heures
+  formule: constantes . empreinte transport . car heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . car . nombre heures:
@@ -874,7 +860,7 @@ pratique . club . déplacement exterieur national . car . nombre heures:
 ## ferroviaire
 
 pratique . club . déplacement exterieur national . ferroviaire:
-  formule: constantes . empreinte transport . ferroviaire * nombre heures
+  formule: constantes . empreinte transport . ferroviaire heure * nombre heures
   unité: kgCO2e
 
 pratique . club . déplacement exterieur national . ferroviaire . nombre heures:
@@ -899,13 +885,13 @@ pratique . club . déplacement exterieur hors national . distance:
   formule:
     variations:
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'régional'
-        alors: 50
+        alors: constantes . pratique . distance . régionale
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'départemental'
-        alors: 60
+        alors: constantes . pratique . distance . départementale
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'régional 1'
-        alors: 20
+        alors: constantes . pratique . distance . régionale
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'district'
-        alors: 20
+        alors: constantes . pratique . distance . départementale
   unité: km
 
 pratique . club . déplacement exterieur hors national . nombre transports:
@@ -1257,25 +1243,21 @@ pratique . alimentation . séance club . par séance:
 ##
 
 pratique . alimentation . séance club . barres:
-  titre: Barres
+  titre: Barres (kg)
   icônes: 🍫
-  formule: empreinte * nombre
+  formule: constantes . alimentation . barres * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance club . barres . nombre:
-  question: Barres
+  question: Barres (kg)
   par défaut: 2
-
-pratique . alimentation . séance club . barres . empreinte:
-  formule: 5.35
-  unité: kgCO2e
 
   ##
 
 pratique . alimentation . séance club . boissons:
   icônes: 🧃
   titre: Boisson énergétique (L)
-  formule: empreinte * nombre
+  formule: constantes . boissons . boissons * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance club . boissons . nombre:
@@ -1283,32 +1265,24 @@ pratique . alimentation . séance club . boissons . nombre:
   par défaut: 0.5
   unité: L
 
-pratique . alimentation . séance club . boissons . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
-
   ##
 
 pratique . alimentation . séance club . fruits:
   icônes: 🍎🍐🍊
   titre: Fruits
-  formule: empreinte * nombre
+  formule: constantes . alimentation . fruits * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance club . fruits . nombre:
   question: Fruits
   par défaut: 2
 
-pratique . alimentation . séance club . fruits . empreinte:
-  formule: 5.35
-  unité: kgCO2e
-
   ##
 
 pratique . alimentation . séance club . sodas:
   icônes: 🥤
   titre: Sodas (L)
-  formule: empreinte * nombre
+  formule: constantes . boissons . sodas * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance club . sodas . nombre:
@@ -1316,26 +1290,18 @@ pratique . alimentation . séance club . sodas . nombre:
   par défaut: 0
   unité: L
 
-pratique . alimentation . séance club . sodas . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
-
   ##
 
 pratique . alimentation . séance club . alcool:
   icônes: 🍺🍷
   titre: 'Alcool : bière, vin, etc. (L)'
-  formule: empreinte * nombre
+  formule: constantes . boissons . alcool * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance club . alcool . nombre:
   question: 'Alcool : bière, vin, etc. (L)'
   par défaut: 0.25
   unité: L
-
-pratique . alimentation . séance club . alcool . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
 
 
 ## ALIMENTATION / LOISIR
@@ -1356,25 +1322,21 @@ pratique . alimentation . séance loisir . par séance:
 ##
 
 pratique . alimentation . séance loisir . barres:
-  titre: Barres
+  titre: Barres (kg)
   icônes: 🍫
-  formule: empreinte * nombre
+  formule: constantes . alimentation . barres * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . barres . nombre:
-  question: Barres
+  question: Barres (kg)
   par défaut: 1
-
-pratique . alimentation . séance loisir . barres . empreinte:
-  formule: 5.35
-  unité: kgCO2e
 
   ##
 
 pratique . alimentation . séance loisir . boissons:
   icônes: 🧃
   titre: Boisson énergétique (L)
-  formule: empreinte * nombre
+  formule: constantes . boissons . boissons * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . boissons . nombre:
@@ -1382,32 +1344,24 @@ pratique . alimentation . séance loisir . boissons . nombre:
   par défaut: 0
   unité: L
 
-pratique . alimentation . séance loisir . boissons . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
-
   ##
 
 pratique . alimentation . séance loisir . fruits:
   icônes: 🍎🍐🍊
   titre: Fruits
-  formule: empreinte * nombre
+  formule: constantes . alimentation . fruits * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . fruits . nombre:
   question: Fruits
   par défaut: 1
 
-pratique . alimentation . séance loisir . fruits . empreinte:
-  formule: 5.35
-  unité: kgCO2e
-
 ##
 
 pratique . alimentation . séance loisir . eau en bouteille:
   icônes: 🥤
   titre: Eau en bouteille (L)
-  formule: empreinte * nombre
+  formule: constantes . boissons . eau en bouteille * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . eau en bouteille . nombre:
@@ -1415,16 +1369,12 @@ pratique . alimentation . séance loisir . eau en bouteille . nombre:
   par défaut: 0
   unité: L
 
-pratique . alimentation . séance loisir . eau en bouteille . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
-
   ##
 
 pratique . alimentation . séance loisir . sodas:
   icônes: 🥤
   titre: Sodas (L)
-  formule: empreinte * nombre
+  formule: constantes . boissons . sodas * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . sodas . nombre:
@@ -1432,23 +1382,15 @@ pratique . alimentation . séance loisir . sodas . nombre:
   par défaut: 0.5
   unité: L
 
-pratique . alimentation . séance loisir . sodas . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L
-
   ##
 
 pratique . alimentation . séance loisir . alcool:
   icônes: 🍺🍷
   titre: 'Alcool : bière, vin, etc. (L)'
-  formule: empreinte * nombre
+  formule: constantes . boissons . alcool * nombre
   unité: kgCO2e
 
 pratique . alimentation . séance loisir . alcool . nombre:
   question: 'Alcool : bière, vin, etc. (L)'
   par défaut: 0.5
   unité: L
-
-pratique . alimentation . séance loisir . alcool . empreinte:
-  formule: 5.35
-  unité: kgCO2e/L

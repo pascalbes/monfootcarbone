@@ -109,121 +109,89 @@ equipements . matériel:
 
 equipements . matériel . maillots:
   icônes: 👕
-  formule: empreinte * nombre
+  formule: constantes . equipements . maillots * nombre
   unité: kgCO2e
 
 equipements . matériel . maillots . nombre:
   question: Maillots ?
   par défaut: 2
 
-equipements . matériel . maillots . empreinte:
-  formule: 5.35
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . short et collants:
   icônes: 🩳
-  formule: empreinte * nombre
+  formule: constantes . equipements . short et collants * nombre
   unité: kgCO2e
 
 equipements . matériel . short et collants . nombre:
   question: Shorts et collants ?
   par défaut: 2
 
-equipements . matériel . short et collants . empreinte:
-  formule: 6.4
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . chaussures:
   icônes: 👟
-  formule: empreinte * nombre
+  formule: constantes . equipements . chaussures * nombre
   unité: kgCO2e
 
 equipements . matériel . chaussures . nombre:
   question: Paire de chaussures ?
   par défaut: 1
 
-equipements . matériel . chaussures . empreinte:
-  formule: 18.7
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . survêtements:
   icônes: 🩳
-  formule: empreinte * nombre
+  formule: constantes . equipements . survêtements * nombre
   unité: kgCO2e
 
 equipements . matériel . survêtements . nombre:
   question: Survêtements ?
   par défaut: 1
 
-equipements . matériel . survêtements . empreinte:
-  formule: 6.4
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . sous-vêtements:
   icônes: 👟
-  formule: empreinte * nombre
+  formule: constantes . equipements . sous-vêtements * nombre
   unité: kgCO2e
 
 equipements . matériel . sous-vêtements . nombre:
   question: Sous-vêtements ?
   par défaut: 3
 
-equipements . matériel . sous-vêtements . empreinte:
-  formule: 18.7
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . manteaux:
   icônes: 🩳
-  formule: empreinte * nombre
+  formule: constantes . equipements . manteaux * nombre
   unité: kgCO2e
 
 equipements . matériel . manteaux . nombre:
   question: Manteaux ?
   par défaut: 1
 
-equipements . matériel . manteaux . empreinte:
-  formule: 6.4
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . matériel de récupération électrique:
   icônes: 👟
-  formule: empreinte * nombre
+  formule: constantes . equipements . matériel de récupération électrique * nombre
   unité: kgCO2e
 
 equipements . matériel . matériel de récupération électrique . nombre:
   question: Matériel de récupération électrique (électrostimulateur, pistolet de massage, etc.)  ?
   par défaut: 0
 
-equipements . matériel . matériel de récupération électrique . empreinte:
-  formule: 18.7
-  unité: kgCO2e
-
 ##
 
 equipements . matériel . ballons:
   icônes: 🩳
-  formule: empreinte * nombre
+  formule: constantes . equipements . ballons * nombre
   unité: kgCO2e
 
 equipements . matériel . ballons . nombre:
   question: Ballons ?
   par défaut: 1
-
-equipements . matériel . ballons . empreinte:
-  formule: 6.4
-  unité: kgCO2e
 
 ##
 
