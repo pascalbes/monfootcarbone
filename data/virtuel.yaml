@@ -124,7 +124,7 @@ virtuel . jeux vidéos . sorare . type:
 virtuel . jeux vidéos . sorare . montant:
   question: En moyenne, sur un mois, combien effectuez-vous de transactions sur Sorare ?
   par défaut: 10
-  unité: euros
+  unité: transactions
 
 ## simulation hors ligne
 
