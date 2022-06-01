@@ -17,9 +17,9 @@ bilan:
   formule: 
     somme: 
       - pratique
-      - equipements
-      - spectateur
-      - virtuel
+      # - equipements
+      # - spectateur
+      # - virtuel
       
   références: 
     - https://avenirclimatique.org/action/

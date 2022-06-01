@@ -2,7 +2,8 @@ actions:
   formule:
     somme:
       - pratique . entrainement vélo plutôt que voiture
-      - transport . arrêter l'avion
+      - pratique . entrainement transports communs plutôt que voiture
+      # - transport . arrêter l'avion
       # - transport . arrêter l'avion court
       # - alimentation . réduire viande . par deux
       # - alimentation . réduire viande . par quatre

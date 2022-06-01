@@ -1,6 +1,17 @@
 pratique . entrainement vélo plutôt que voiture:
-  formule: entrainement voiture - entrainement vélo
+  titre: Aller aux entrainements de football à vélo plutôt qu'en voiture
+  formule: entrainement voiture
+  description: |
+    Quand c'est possible, prendre les transports en commun ou des véhicules légers (marche à pied, vélo, trottinette personnelle, ...) pour aller au sport réduit notre empreinte climat, mais améliore aussi notre qualité de vie. 70% des déplacements sont réalisés avec des véhicules individuels, la plupart seuls dans sa voiture. C'est ce qu'on appelle l'auto-solisme. En plus d'émettre beaucoup de gaz à effet de serre cet autosolisme déteriore la qualité de l'air de nos villes et donc notre santé, et encombre les voies urbaines.
+
   unité: kgCO2e
+
+pratique . entrainement transports communs plutôt que voiture:
+  titre: Aller aux entrainements de football en transports communs plutôt qu'en voiture
+  formule: entrainement voiture - entrainement transports communs
+  unité: kgCO2e
+  description: |
+    Quand c'est possible, prendre les transports en commun ou des véhicules légers (marche à pied, vélo, trottinette personnelle, ...) pour aller au sport réduit notre empreinte climat, mais améliore aussi notre qualité de vie. 70% des déplacements sont réalisés avec des véhicules individuels, la plupart seuls dans sa voiture. C'est ce qu'on appelle l'auto-solisme. En plus d'émettre beaucoup de gaz à effet de serre cet autosolisme déteriore la qualité de l'air de nos villes et donc notre santé, et encombre les voies urbaines.
 
 pratique . entrainement voiture:
   formule:
@@ -15,9 +26,16 @@ pratique . entrainement voiture:
       - pratique . club . déplacement domicile . voiture thermique * constantes . nb mois pratique
       - pratique . club . déplacement domicile . covoiturage * constantes . nb mois pratique
 
-pratique . entrainement vélo:
+
+pratique . entrainement transports communs:
   formule:
     somme:
-      - pratique . loisir . déplacement . doux * constantes . nb mois pratique
-      - pratique . futsal . déplacement domicile . doux * constantes . nb mois pratique
-      - pratique . club . déplacement domicile . doux * constantes . nb mois pratique
+      - pratique . loisir . déplacement . voiture élec * constantes . nb mois pratique / constantes . empreinte transport . voiture élec * constantes . empreinte transport . transports en commun
+      - pratique . loisir . déplacement . voiture thermique * constantes . nb mois pratique / constantes . empreinte transport . voiture thermique * constantes . empreinte transport . transports en commun
+      - pratique . loisir . déplacement . covoiturage * constantes . nb mois pratique / constantes . empreinte transport . covoiturage * constantes . empreinte transport . transports en commun
+      - pratique . futsal . déplacement domicile . voiture élec * constantes . nb mois pratique / constantes . empreinte transport . voiture élec * constantes . empreinte transport . transports en commun
+      - pratique . futsal . déplacement domicile . voiture thermique * constantes . nb mois pratique / constantes . empreinte transport . voiture thermique * constantes . empreinte transport . transports en commun
+      - pratique . futsal . déplacement domicile . covoiturage * constantes . nb mois pratique / constantes . empreinte transport . covoiturage * constantes . empreinte transport . transports en commun
+      - pratique . club . déplacement domicile . voiture élec * constantes . nb mois pratique / constantes . empreinte transport . voiture élec * constantes . empreinte transport . transports en commun
+      - pratique . club . déplacement domicile . voiture thermique * constantes . nb mois pratique / constantes . empreinte transport . voiture thermique * constantes . empreinte transport . transports en commun
+      - pratique . club . déplacement domicile . covoiturage * constantes . nb mois pratique / constantes . empreinte transport . covoiturage * constantes . empreinte transport . transports en commun
