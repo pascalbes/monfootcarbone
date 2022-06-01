@@ -88,7 +88,7 @@ pratique . loisir . exterieur . nombre pratiques:
 
 pratique . loisir . exterieur herbe:
   titre: Extérieur (terrain en herbe)
-  formule: constantes . pratique . loisir . exterieur herbe . empreinte * nombre pratiques * constantes . nb mois pratique
+  formule: constantes . pratique . loisir . exterieur herbe * nombre pratiques * constantes . nb mois pratique
   unité: kgCO2e
 
 pratique . loisir . exterieur herbe . nombre pratiques:
