@@ -737,7 +737,7 @@ pratique . club . déplacement domicile . deux-roues motorisé . nombre déplace
 #######
 
 pratique . club . matches:
-  formule: pratique . club . FE Stade * constantes . nb semaines pratique * nb matches
+  formule: pratique . club . FE Stade * constantes . nb mois pratique * nb matches
   unité: kgCO2
 
 pratique . club . fréquence:
