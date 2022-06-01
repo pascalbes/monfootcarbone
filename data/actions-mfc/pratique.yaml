@@ -1,0 +1,23 @@
+pratique . entrainement vélo plutôt que voiture:
+  formule: entrainement voiture - entrainement vélo
+  unité: kgCO2e
+
+pratique . entrainement voiture:
+  formule:
+    somme:
+      - pratique . loisir . déplacement . voiture élec * constantes . nb mois pratique
+      - pratique . loisir . déplacement . voiture thermique * constantes . nb mois pratique
+      - pratique . loisir . déplacement . covoiturage * constantes . nb mois pratique
+      - pratique . futsal . déplacement domicile . voiture élec * constantes . nb mois pratique
+      - pratique . futsal . déplacement domicile . voiture thermique * constantes . nb mois pratique
+      - pratique . futsal . déplacement domicile . covoiturage * constantes . nb mois pratique
+      - pratique . club . déplacement domicile . voiture élec * constantes . nb mois pratique
+      - pratique . club . déplacement domicile . voiture thermique * constantes . nb mois pratique
+      - pratique . club . déplacement domicile . covoiturage * constantes . nb mois pratique
+
+pratique . entrainement vélo:
+  formule:
+    somme:
+      - pratique . loisir . déplacement . doux * constantes . nb mois pratique
+      - pratique . futsal . déplacement domicile . doux * constantes . nb mois pratique
+      - pratique . club . déplacement domicile . doux * constantes . nb mois pratique
