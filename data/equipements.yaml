@@ -99,7 +99,7 @@ equipements . matériel:
       - short et collants
       - chaussures
       - survêtements
-      - chaussettes
+      - sous-vêtements
       - manteaux
       - matériel de récupération électrique
       - ballons
@@ -167,16 +167,16 @@ equipements . matériel . survêtements . empreinte:
 
 ##
 
-equipements . matériel . chaussettes:
+equipements . matériel . sous-vêtements:
   icônes: 👟
   formule: empreinte * nombre
   unité: kgCO2e
 
-equipements . matériel . chaussettes . nombre:
-  question: Chaussettes ?
+equipements . matériel . sous-vêtements . nombre:
+  question: Sous-vêtements ?
   par défaut: 3
 
-equipements . matériel . chaussettes . empreinte:
+equipements . matériel . sous-vêtements . empreinte:
   formule: 18.7
   unité: kgCO2e
 

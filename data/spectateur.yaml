@@ -281,61 +281,67 @@ spectateur . consommation . boissons . par match:
 ## Bière
 
 spectateur . consommation . boissons . bière:
+  titre: Bière (L)
   formule: constantes . boissons . bière * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . bière . volume:
-  question: Bière
+  question: Bière (L)
   par défaut: 1
 
 ## Vin
 
 spectateur . consommation . boissons . vin:
+  titre: Vin (L)
   formule: constantes . boissons . vin * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . vin . volume:
-  question: Vin
+  question: Vin (L)
   par défaut: 0
 
 ## Spiritueux
 
 spectateur . consommation . boissons . spiritueux:
+  titre: Spiritueux (L)
   formule: constantes . boissons . spiritueux * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . spiritueux . volume:
-  question: Spiritueux
+  question: Spiritueux (L)
   par défaut: 0
 
 ## Soda
 
 spectateur . consommation . boissons . soda:
+  titre: Soda (L)
   formule: constantes . boissons . soda * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . soda . volume:
-  question: Soda
+  question: Soda (L)
   par défaut: 0.5
 
 ## Jus
 
 spectateur . consommation . boissons . jus:
+  titre: Jus (L)
   formule: constantes . boissons . jus * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . jus . volume:
-  question: Jus
+  question: Jus (L)
   par défaut: 0
 
 ## Eau en bouteille
 
 spectateur . consommation . boissons . eau en bouteille:
+  titre: Eau en bouteille (L)
   formule: constantes . boissons . eau en bouteille * volume
   unité: kgCO2e
 
 spectateur . consommation . boissons . eau en bouteille . volume:
-  question: Eau en bouteille
+  question: Eau en bouteille (L)
   par défaut: 0
 
 ####################
@@ -527,31 +533,31 @@ spectateur . téléspectateur . lieu . contexte . bar . nombre:
 ## maison compagnie
 
 spectateur . téléspectateur . lieu . contexte . maison compagnie:
+  titre: Chez vous avec des ami·e·s/de la famille
   formule: constantes . contexte . maison compagnie * nombre
   unité: kgCO2e
 
 spectateur . téléspectateur . lieu . contexte . maison compagnie . nombre:
-  question: Chez vous avec des ami·e·s/de la famille
   par défaut: 2
 
 ## amis
 
 spectateur . téléspectateur . lieu . contexte . amis:
+  titre: Chez des ami·e·s de la famille 
   formule: constantes . contexte . amis * nombre
   unité: kgCO2e
 
 spectateur . téléspectateur . lieu . contexte . amis . nombre:
-  question: Chez des ami·e·s de la famille 
   par défaut: 0
 
 ## Seul·e chez vous
 
 spectateur . téléspectateur . lieu . contexte . maison seul:
+  titre: Seul·e chez vous
   formule: constantes . contexte . maison seul * nombre
   unité: kgCO2e
 
 spectateur . téléspectateur . lieu . contexte . maison seul . nombre:
-  question: Seul·e chez vous
   par défaut: 0
 
 ####################
@@ -607,51 +613,56 @@ spectateur . téléspectateur . boissons . empreinte totale:
 ## Bière
 
 spectateur . téléspectateur . boissons . bière:
+  titre: Bière (L)
   formule: constantes . boissons . bière * volume
   unité: kgCO2e
 
 spectateur . téléspectateur . boissons . bière . volume:
-  question: Bière
+  question: Bière (L)
   par défaut: 1
 
 ## Vin
 
 spectateur . téléspectateur . boissons . vin:
+  titre: Vin (L)
   formule: constantes . boissons . vin * volume
   unité: kgCO2e
 
 spectateur . téléspectateur . boissons . vin . volume:
-  question: Vin
+  question: Vin (L)
   par défaut: 0
 
 ## Spiritueux
 
 spectateur . téléspectateur . boissons . spiritueux:
+  titre: Spiritueux (L)
   formule: constantes . boissons . spiritueux * volume
   unité: kgCO2e
 
 spectateur . téléspectateur . boissons . spiritueux . volume:
-  question: Spiritueux
+  question: Spiritueux (L)
   par défaut: 0
 
 ## Soda
 
 spectateur . téléspectateur . boissons . soda:
+  titre: Soda (L)
   formule: constantes . boissons . soda * volume
   unité: kgCO2e
 
 spectateur . téléspectateur . boissons . soda . volume:
-  question: Soda
+  question: Soda (L)
   par défaut: 0
 
 ## Jus
 
 spectateur . téléspectateur . boissons . jus:
+  titre: Jus (L)
   formule: constantes . boissons . jus * volume
   unité: kgCO2e
 
 spectateur . téléspectateur . boissons . jus . volume:
-  question: Jus
+  question: Jus (L)
   par défaut: 0
 
 ####################
