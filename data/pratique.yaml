@@ -539,7 +539,7 @@ pratique . club . ligue:
       possibilités:
         - ligue femme
         - ligue homme
-        - hors FFF
+        # - hors FFF
 
 pratique . club . ligue . ligue femme:
   titre: Compétitions féminines
