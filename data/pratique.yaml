@@ -212,7 +212,7 @@ pratique . loisir . déplacement . deux-roues motorisé . nombre déplacements:
 #########
 
 pratique . futsal:
-  titre: Futsal (hors five)
+  titre: Futsal
   applicable si: présent
   formule:
     somme:
@@ -282,18 +282,18 @@ pratique . futsal . fréquence:
     une possibilité: 
       choix obligatoire: oui
       possibilités:
-        - hebodmadaire
+        - hebdomadaire
         - bimensuel
         - mensuel
 
-pratique . futsal . fréquence . hebodmadaire:
+pratique . futsal . fréquence . hebdomadaire:
 pratique . futsal . fréquence . bimensuel:
 pratique . futsal . fréquence . mensuel:
 
 pratique . futsal . nb matches:
   formule:
     variations:
-      - si: fréquence = 'hebodmadaire'
+      - si: fréquence = 'hebdomadaire'
         alors: 4
       - si: fréquence = 'bimensuel'
         alors: 2
@@ -532,7 +532,7 @@ pratique . club . présent:
   par défaut: non
 
 pratique . club . ligue:
-  question: Dans quelle ligue figure votre club ?
+  question: A quelles compétitions participez-vous ?
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -542,11 +542,11 @@ pratique . club . ligue:
         - hors FFF
 
 pratique . club . ligue . ligue femme:
-  titre: Ligue Féminine
+  titre: Compétitions féminines
 pratique . club . ligue . ligue homme:
-  titre: Ligue Masculine
+  titre: Compétitions masculines
 pratique . club . ligue . hors FFF:
-  titre: Club hors compétition FFF
+  titre: Compétitions futsal
 
 
 pratique . club . ligue . ligue homme . niveau pratique:
@@ -581,12 +581,12 @@ pratique . club . ligue . ligue femme . niveau pratique:
     une possibilité: 
       choix obligatoire: oui
       possibilités:
-        - division 1 Arkema
+        - d1 Arkema
         - division 2
         - régional
         - district
 
-pratique . club . ligue . ligue femme . niveau pratique . division 1 Arkema:
+pratique . club . ligue . ligue femme . niveau pratique . d1 Arkema:
 pratique . club . ligue . ligue femme . niveau pratique . division 2:
 pratique . club . ligue . ligue femme . niveau pratique . régional:
 pratique . club . ligue . ligue femme . niveau pratique . district:
@@ -619,7 +619,7 @@ pratique . club . FE Stade:
         alors: 1.23
       - si: pratique . club . ligue . ligue homme . niveau pratique = 'départemental'
         alors: 0.79
-      - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 1 Arkema'
+      - si: pratique . club . ligue . ligue femme . niveau pratique = 'd1 Arkema'
         alors: 6.86
       - si: pratique . club . ligue . ligue femme . niveau pratique = 'division 2'
         alors: 3.36
@@ -746,18 +746,18 @@ pratique . club . fréquence:
     une possibilité: 
       choix obligatoire: oui
       possibilités:
-        - hebodmadaire
+        - hebdomadaire
         - bimensuel
         - mensuel
 
-pratique . club . fréquence . hebodmadaire:
+pratique . club . fréquence . hebdomadaire:
 pratique . club . fréquence . bimensuel:
 pratique . club . fréquence . mensuel:
 
 pratique . club . nb matches:
   formule:
     variations:
-      - si: fréquence = 'hebodmadaire'
+      - si: fréquence = 'hebdomadaire'
         alors: 4
       - si: fréquence = 'bimensuel'
         alors: 2
@@ -774,7 +774,7 @@ pratique . club . déplacement exterieur national:
       - pratique . club . ligue . ligue homme . niveau pratique = 'pro'
       - pratique . club . ligue . ligue homme . niveau pratique = 'amateur 1'
       - pratique . club . ligue . ligue homme . niveau pratique = 'amateur 2'
-      - pratique . club . ligue . ligue femme . niveau pratique = 'division 1 Arkema'
+      - pratique . club . ligue . ligue femme . niveau pratique = 'd1 Arkema'
       - pratique . club . ligue . ligue femme . niveau pratique = 'division 2'
   formule: nombre total heures * facteur * constantes . nb mois matches
   unité: kgCO2
