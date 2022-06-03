@@ -141,7 +141,7 @@ equipements . matériel . chaussures . nombre:
 ##
 
 equipements . matériel . survêtements:
-  icônes: 🩳
+  icônes: 🦺👖
   formule: constantes . equipements . survêtements * nombre
   unité: kgCO2e
 
@@ -152,7 +152,7 @@ equipements . matériel . survêtements . nombre:
 ##
 
 equipements . matériel . sous-vêtements:
-  icônes: 👟
+  icônes: 👟🩲
   formule: constantes . equipements . sous-vêtements * nombre
   unité: kgCO2e
 
@@ -163,7 +163,7 @@ equipements . matériel . sous-vêtements . nombre:
 ##
 
 equipements . matériel . manteaux:
-  icônes: 🩳
+  icônes: 🧥
   formule: constantes . equipements . manteaux * nombre
   unité: kgCO2e
 
@@ -174,7 +174,7 @@ equipements . matériel . manteaux . nombre:
 ##
 
 equipements . matériel . matériel de récupération électrique:
-  icônes: 👟
+  icônes: 🔌
   formule: constantes . equipements . matériel de récupération électrique * nombre
   unité: kgCO2e
 
@@ -185,7 +185,7 @@ equipements . matériel . matériel de récupération électrique . nombre:
 ##
 
 equipements . matériel . ballons:
-  icônes: 🩳
+  icônes: ⚽️
   formule: constantes . equipements . ballons * nombre
   unité: kgCO2e
 
