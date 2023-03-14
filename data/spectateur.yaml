@@ -242,7 +242,7 @@ spectateur . déplacements . nationaux . hébergement . nombre:
   unité: nuits
 
 spectateur . déplacements . nationaux . hébergement . empreinte:
-  formule: 106.15
+  formule: 3.92
   unité: kgCO2e/nuits
 
 
